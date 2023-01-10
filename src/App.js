@@ -1,5 +1,6 @@
 import { createContext, useState } from 'react';
 import './App.css';
+import './reset.css';
 import AppRouter from './routes/AppRouter';
 
 export const UserContext = createContext(); //유저에 대한 context(전역정보);
@@ -8,13 +9,12 @@ function App() {
   const [init, setInit] = useState(true); //처음에 정보 가져오기위함
   //유저 가져오면 정보는 useContext로 전역관리
   //우선 있다고 가정함
-  /*const user = {
+  const user = {
     nickName: '조혜빈',
     email: 'hhbbcho@naver.com',
   };
-  */
 
-  const user = undefined;
+  //const user = undefined;
 
   return (
     <>

@@ -1,0 +1,40 @@
+.container{
+    height: 270px;
+    position: relative;
+    width: 100%;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+}
+
+.slideContainer{
+    display: flex;
+    width: calc(250px * 18);
+    animation: scroll 5s linear infinite;
+}
+
+@keyframes scroll {
+    0%{
+        transform: translateX(0);
+    }
+    100%{
+        transform: translateX(calc(-250px*9));
+    }
+}
+
+
+.slideImg{
+    height: 250px;
+    width: 250px;
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    perspective: 100px;
+    margin-right: 250px;
+}
+
+.slideImg img{
+    width: 100%;
+    transition: transform 1s;
+}
+

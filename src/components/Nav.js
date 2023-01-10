@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { UserContext } from '../App';
 
 import logo from '../images/Logo.png';
@@ -14,30 +14,30 @@ const Nav = () => {
       {!user ? (
         <div className="nav">
           <div>
-            <Link to="/">
+            <NavLink to="/">
               <img src={logo} alt="logo" id="logoImg" />
-            </Link>
+            </NavLink>
           </div>
-          <div>
-            <Link to="/login" id="loginLink">
+          <div className="navLinks">
+            <NavLink to="/login" id="loginLink" activeClassName="active">
               <span>Login</span>
-            </Link>
-            <Link to="/join">
+            </NavLink>
+            <NavLink to="/join" activeClassName="active">
               <span>Join</span>
-            </Link>
+            </NavLink>
           </div>
         </div>
       ) : (
         <div className="nav">
           <div>
-            <Link to="/">
+            <NavLink to="/">
               <img src={logo} alt="logo" id="logoImg" />
-            </Link>
+            </NavLink>
           </div>
-          <div>
-            <Link to="/mypage">
+          <div className="navLinks">
+            <NavLink to="/mypage" activeClassName="active">
               <span>My</span>
-            </Link>
+            </NavLink>
           </div>
         </div>
       )}

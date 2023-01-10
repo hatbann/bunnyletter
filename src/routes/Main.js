@@ -13,7 +13,7 @@ const Main = () => {
 
   function ClickSendBtn() {
     if (user) {
-      navigate('/makeBunny');
+      navigate('/searchDear');
     } else {
       navigate('/login');
     }

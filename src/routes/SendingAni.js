@@ -1,7 +1,17 @@
 import React from 'react';
+import Nav from '../components/Nav';
+
+import SlideBunny from '../components/SlideBunny';
 
 const SendingAni = () => {
-  return <div>SendingAni</div>;
+  return (
+    <>
+      <Nav />
+      <div className="write section">
+        <SlideBunny />
+      </div>
+    </>
+  );
 };
 
 export default SendingAni;

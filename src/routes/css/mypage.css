@@ -1,0 +1,7 @@
+.mypage.section {
+    background-color: #f8c3cc;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }

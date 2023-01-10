@@ -22,7 +22,7 @@ const AppRouter = () => {
         <Route path="/makeBunny" element={<MakeBunny />} />
         <Route path="/mypage" element={<Mypage />} />
         <Route path="/searchDear" element={<SearchDear />} />
-        <Route path="/seding..." element={<SendingAni />} />
+        <Route path="/sending..." element={<SendingAni />} />
       </Routes>
     </BrowserRouter>
   );
