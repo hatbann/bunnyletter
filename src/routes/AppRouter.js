@@ -9,6 +9,7 @@ import MakeBunny from './MakeBunny';
 import Mypage from './Mypage';
 import SearchDear from './SearchDear';
 import SendingAni from './SendingAni';
+import ShareKakao from './ShareKakao';
 
 const AppRouter = () => {
   const user = useContext(UserContext);
@@ -23,6 +24,7 @@ const AppRouter = () => {
         <Route path="/mypage" element={<Mypage />} />
         <Route path="/searchDear" element={<SearchDear />} />
         <Route path="/sending..." element={<SendingAni />} />
+        <Route path="/shareKakao" element={<ShareKakao />} />
       </Routes>
     </BrowserRouter>
   );
