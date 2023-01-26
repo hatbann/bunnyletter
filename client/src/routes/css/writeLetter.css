@@ -1,0 +1,87 @@
+.section {
+  background-color: #f8c3cc;
+}
+
+.write.section {
+  background-color: #f8c3cc;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.write.section h1 {
+  font-size: 64px;
+  margin-bottom: 87px;
+  margin-top: 0;
+  font-weight: 600;
+}
+
+.searchForm {
+  display: flex;
+  align-items: center;
+}
+
+.searchForm form {
+  text-align: center;
+}
+
+.searchForm form div {
+  margin-bottom: 39px;
+}
+
+.searchForm form input {
+  width: 310px;
+  height: 42px;
+  border: none;
+  border-radius: 70px;
+}
+
+.searchForm button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  margin-left: 30px;
+}
+
+.search.section p {
+  font-size: 13px;
+}
+
+/*편지 적는 부분*/
+.contentForm {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin-top: 38px;
+}
+
+.contentForm form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -150px;
+  margin-top: 40px;
+}
+
+.contentForm form textarea {
+  width: 294px;
+  height: 192px;
+  font-size: 20px;
+  border: none;
+  resize: none;
+}
+
+.contentForm form textarea:focus {
+  outline: none;
+}
+
+.sendBtn {
+  width: 138px;
+  height: 42px;
+  background-color: white;
+  border: none;
+  font-size: 20px;
+  border-radius: 70px;
+  margin-top: 38px;
+}
