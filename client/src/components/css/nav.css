@@ -1,0 +1,27 @@
+.nav {
+  width: calc(100vw - 200px);
+  display: flex;
+  padding: 50px 100px;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+#logoImg {
+  width: 70px;
+}
+
+.navLinks a:first-child{
+  margin-right: 20px;
+}
+
+.navLinks a{
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.active{
+  color: white;
+}

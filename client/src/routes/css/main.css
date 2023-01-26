@@ -1,0 +1,26 @@
+.main.section {
+  background-color: #f8c3cc;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#letterImg {
+  width: 626px;
+  margin-top: 130px;
+}
+
+.main.section button {
+  border: none;
+  background-color: white;
+  padding: 5px 10px;
+  width: 310px;
+  height: 42px;
+  border-radius: 70px;
+  margin-top: 70px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #44403f;
+  cursor: pointer;
+}
