@@ -28,7 +28,7 @@ const Login = () => {
     }
 
     axios
-      .post('http://localhost:4000/login', {
+      .post('http://localhost:3001/login', {
         id: idRef.current.value,
         pw: pwRef.current.value,
       })
@@ -49,16 +49,12 @@ const Login = () => {
         <div className="loginForm">
           <form action="">
             <div>
-              <label htmlFor="userId" ref={idRef}>
-                ID
-              </label>
-              <input type="text" name="userId" id="userId" />
+              <label htmlFor="userId">ID</label>
+              <input type="text" name="userId" id="userId" ref={idRef} />
             </div>
             <div>
-              <label htmlFor="userPw" ref={pwRef}>
-                PW
-              </label>
-              <input type="password" name="userPw" id="userPw" />
+              <label htmlFor="userPw">PW</label>
+              <input type="password" name="userPw" id="userPw" ref={pwRef} />
             </div>
           </form>
           <button>
