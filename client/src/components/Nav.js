@@ -24,10 +24,10 @@ const Nav = () => {
             </NavLink>
           </div>
           <div className="navLinks">
-            <NavLink to="/login" id="loginLink" activeClassName="active">
+            <NavLink to="/login" id="loginLink" activeclassname="active">
               <span>Login</span>
             </NavLink>
-            <NavLink to="/join" activeClassName="active">
+            <NavLink to="/join" activeclassname="active">
               <span>Join</span>
             </NavLink>
           </div>
@@ -40,7 +40,7 @@ const Nav = () => {
             </NavLink>
           </div>
           <div className="navLinks">
-            <NavLink to="/mypage" activeClassName="active">
+            <NavLink to="/mypage" activeclassname="active">
               <span>My</span>
             </NavLink>
             <button
