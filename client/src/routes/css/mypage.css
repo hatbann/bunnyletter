@@ -1,7 +1,45 @@
-.mypage.section {
-    background-color: #f8c3cc;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.mypage.section{
+
+    padding: 250px 0 0 0;
   }
+
+
+  .mypage.section .userInfo{
+    margin-left: 100px;
+  }
+
+  .mypage.section .userInfo h2{
+    font-weight: 600;
+  } 
+
+  .mypage.section .userInfo>button{
+    border: none;
+    background-color: transparent;
+    font-size: 10px;
+    margin-top: 10px;
+    cursor: pointer;
+  }
+
+  .mypage .letters{
+    margin-left: 100px;
+    margin-top: 80px;
+  }
+
+  .mypage .btns button{
+    border: none;
+    background-color: white;
+    border-radius: 70px;
+    padding: 5px 15px;
+    cursor: pointer;
+  }
+
+  .mypage .btns button:first-child{
+    margin-right: 10px;
+
+  }
+
+  
+  .mypage .btns .active{
+  background-color: #202020;
+  color: white;
+}
