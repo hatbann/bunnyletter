@@ -66,22 +66,22 @@ exports.postLogin = async (req, res) => {
   });
 
   if (!result) {
-    console.log(result);
+    console.log('!', result);
     res.send({
       check: false,
       msg: "아이디 또는 비밀번호를 잘못 입력했습니다.",
     });
   } else {
     const samePW = await bcrypt.compare(enteredPassword, result.user_pw);
-
     if (samePW) {
-      req.session.user = {
-        id: enteredId,
-        nickname: result.user_nickname,
-        password: enteredPassword,
-      };
-      console.log(req.session.user);
-      res.send({ check: true, msg: "로그인에 성공하셨습니다!" });
+         req.session.save(function () {
+      req.session.user = result;
+      res.send({
+        check: true,
+        msg: '로그인에 성공하셨습니다!',
+        userInfo: result,
+      });
+    });
     } else
       res.send({
         check: false,

@@ -25,6 +25,12 @@ app.use(
     secret: "bunny",
     resave: false,
     saveUninitialized: true,
+    cookie: {
+      httpOnly: true,
+      sameSite: 'none',
+      maxAge: 5300000,
+      secure: true,
+    },
   })
 );
 

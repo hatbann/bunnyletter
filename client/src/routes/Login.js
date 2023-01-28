@@ -1,17 +1,19 @@
-import React, { useRef } from "react";
-import Nav from "../components/Nav";
 
-import "./css/login.css";
-import axios from "axios";
+import React, { useRef } from 'react';
+import './css/login.css';
+import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
-import loginBtn from "../images/LoginBtn.png";
-import { useNavigate } from "react-router-dom";
+import Nav from '../components/Nav';
+import loginBtn from '../images/LoginBtn.png';
+
+import { setUserInfo } from '../store/module/user';
+
 
 const Login = () => {
   const idRef = useRef();
   const pwRef = useRef();
-
-  const navigate = useNavigate();
 
   const onClickLogin = () => {
     if (idRef.current.value === "" || idRef.current.value === undefined) {
@@ -34,7 +36,14 @@ const Login = () => {
       .then((res) => {
         if (res.data.check == true) {
           alert(res.data.msg);
-          window.location.href = "/";
+          sessionStorage.setItem('user_id', res.data.userInfo.user_id);
+          sessionStorage.setItem('user_pw', res.data.userInfo.user_pw);
+          sessionStorage.setItem(
+            'user_nickname',
+            res.data.userInfo.user_nickname
+          );
+          window.location.href = '/';
+
         } else {
           alert(res.data.msg);
         }
