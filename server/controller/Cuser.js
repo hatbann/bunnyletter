@@ -38,17 +38,19 @@ exports.postLogin = async (req, res) => {
   });
 
   if (!result) {
-    console.log(result);
+    console.log('!', result);
     res.send({
       check: false,
       msg: '이메일 또는 비밀번호를 잘못 입력했습니다.',
     });
   } else {
-    req.session.user = {
-      id: enteredId,
-      nickname: result.user_nickname,
-      password: enteredPassword,
-    };
-    res.send({ check: true, msg: '로그인에 성공하셨습니다!' });
+    req.session.save(function () {
+      req.session.user = result;
+      res.send({
+        check: true,
+        msg: '로그인에 성공하셨습니다!',
+        userInfo: result,
+      });
+    });
   }
 };
