@@ -1,3 +1,4 @@
+
 import React, { useRef } from 'react';
 import './css/login.css';
 import axios from 'axios';
@@ -9,26 +10,26 @@ import loginBtn from '../images/LoginBtn.png';
 
 import { setUserInfo } from '../store/module/user';
 
+
 const Login = () => {
   const idRef = useRef();
   const pwRef = useRef();
 
   const onClickLogin = () => {
-    console.log(idRef.current.value);
-    if (idRef.current.value === '' || idRef.current.value === undefined) {
-      alert('아이디를 입력하세요');
+    if (idRef.current.value === "" || idRef.current.value === undefined) {
+      alert("아이디를 입력하세요.");
       idRef.current.focus();
       return false;
     }
 
-    if (pwRef.current.value === '' || pwRef.current.value === undefined) {
-      alert('비밀번호를 입력하세요');
+    if (pwRef.current.value === "" || pwRef.current.value === undefined) {
+      alert("비밀번호를 입력하세요.");
       pwRef.current.focus();
       return false;
     }
 
     axios
-      .post('http://localhost:8000/login', {
+      .post("http://localhost:8000/login", {
         id: idRef.current.value,
         pw: pwRef.current.value,
       })
@@ -42,8 +43,9 @@ const Login = () => {
             res.data.userInfo.user_nickname
           );
           window.location.href = '/';
+
         } else {
-          alert('실패');
+          alert(res.data.msg);
         }
       });
   };
