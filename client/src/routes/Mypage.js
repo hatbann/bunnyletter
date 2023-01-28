@@ -5,6 +5,7 @@ import Nav from '../components/Nav';
 import Main from './Main';
 
 import './css/mypage.css';
+import axios from 'axios';
 
 const Mypage = () => {
   const user = useSelector((state) => state.user.user.data);
@@ -23,6 +24,22 @@ const Mypage = () => {
     }
   };
 
+  const deleteAccount = () => {
+    console.log(user.user_id);
+    const confirm = window.confirm('정말로 탈퇴하시겠습니까?');
+    if (confirm === true) {
+      axios
+        .delete('http://localhost:8000/deleteUser', {
+          data: { user_id: user.user_id },
+        })
+        .then((res) => {
+          sessionStorage.clear();
+          alert(res.data);
+          window.location.href = '/';
+        });
+    }
+  };
+
   return (
     <>
       {isLoggingIn ? (
@@ -31,7 +48,7 @@ const Mypage = () => {
           <div className="mypage section">
             <section className="userInfo">
               <h2>{user.user_nickname} 님</h2>
-              <button>회원탈퇴</button>
+              <button onClick={deleteAccount}>회원탈퇴</button>
             </section>
             <section className="letters">
               <div className="btns">

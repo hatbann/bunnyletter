@@ -1,17 +1,17 @@
-const express = require("express");
-const cors = require("cors");
-const session = require("express-session");
-const dotenv = require("dotenv");
-const bodyParser = require("body-parser");
+const express = require('express');
+const cors = require('cors');
+const session = require('express-session');
+const dotenv = require('dotenv');
+const bodyParser = require('body-parser');
 
 dotenv.config();
 
 const app = express();
 
-const Cuser = require("./controller/Cuser");
+const Cuser = require('./controller/Cuser');
 
 let corsOptions = {
-  origin: "*", // 출처 허용 옵션
+  origin: '*', // 출처 허용 옵션
   credential: true, // 사용자 인증이 필요한 리소스(쿠키 ..등) 접근
 };
 
@@ -22,7 +22,7 @@ app.use(cors(corsOptions));
 
 app.use(
   session({
-    secret: "bunny",
+    secret: 'bunny',
     resave: false,
     saveUninitialized: true,
     cookie: {
@@ -34,8 +34,9 @@ app.use(
   })
 );
 
-app.post("/login", Cuser.postLogin);
-app.post("/join", Cuser.postJoin);
+app.post('/login', Cuser.postLogin);
+app.post('/join', Cuser.postJoin);
+app.delete('/deleteUser', Cuser.deleteAccount);
 
 const PORT = process.env.PORT || 8000;
 
