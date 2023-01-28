@@ -29,20 +29,23 @@ const Join = () => {
       nickNameRef.current.value === '' ||
       nickNameRef.current.value === undefined
     ) {
-      alert('비밀번호를 입력하세요');
+      alert('닉네임를 입력하세요');
       nickNameRef.current.focus();
       return false;
     }
 
+    console.log(nickNameRef.current.value);
+
     axios
-      .post('http://localhost:3001/join', {
+      .post('http://localhost:8000/join', {
         id: idRef.current.value,
         pw: pwRef.current.value,
         nickName: nickNameRef.current.value,
       })
       .then((res) => {
-        if (res.data.check === true) {
+        if (res.data.check == true) {
           console.log('clickLogin', res);
+          alert(res.data.msg);
         } else {
           alert('실패');
         }

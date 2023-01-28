@@ -5,6 +5,7 @@ const User = (Sequelize, DataTypes) => {
       user_id: {
         type: DataTypes.STRING(45),
         allowNull: false,
+        primaryKey: true,
       },
       user_pw: {
         type: DataTypes.STRING(45),

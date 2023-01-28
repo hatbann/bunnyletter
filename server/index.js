@@ -15,6 +15,7 @@ let corsOptions = {
   credential: true, // 사용자 인증이 필요한 리소스(쿠키 ..등) 접근
 };
 
+app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors(corsOptions));
@@ -30,6 +31,8 @@ app.use(
 app.post('/login', Cuser.postLogin);
 app.post('/join', Cuser.postJoin);
 
-app.listen(process.env.PORT, () => {
-  console.log(`running on port ${process.env.PORT}`);
+const PORT = process.env.PORT || 8000;
+
+app.listen(PORT, () => {
+  console.log(`Server open: ${PORT}`);
 });

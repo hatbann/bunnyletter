@@ -28,13 +28,15 @@ const Login = () => {
     }
 
     axios
-      .post('http://localhost:3001/login', {
+      .post('http://localhost:8000/login', {
         id: idRef.current.value,
         pw: pwRef.current.value,
       })
       .then((res) => {
         if (res.data.check == true) {
           console.log('clickLogin', res);
+          alert(res.data.msg);
+          window.location.href = '/';
         } else {
           alert('실패');
         }
