@@ -1,10 +1,53 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+import axios from 'axios';
 
 import Nav from '../components/Nav';
 import './css/writeLetter.css';
 import searchBtn from '../images/SearchBtn.png';
 
 const SearchDear = () => {
+  const searchNickNameRef = useRef();
+  const [searchResult, setSearchResult] = useState(null);
+
+  const navigate = useNavigate();
+
+  const onClickSearch = () => {
+    if (
+      searchNickNameRef.current.value === '' ||
+      searchNickNameRef.current.value === undefined
+    ) {
+      alert('닉네임을 입력하세요.');
+      searchNickNameRef.current.focus();
+      return false;
+    }
+
+    axios
+      .post('http://localhost:8000/search', {
+        searchNickName: searchNickNameRef.current.value,
+      })
+      .then((res) => {
+        if (res.data.check == false) {
+          alert('다시 검색하세요');
+        } else {
+          console.log(res.data);
+
+          let result = res.data.userInfo;
+          setSearchResult(result);
+          console.log(searchResult);
+        }
+      });
+  };
+
+  const gotoSend = () => {
+    navigate('/makeBunny', {
+      state: {
+        searchResult,
+      },
+    });
+  };
+
   return (
     <>
       <Nav />
@@ -13,14 +56,29 @@ const SearchDear = () => {
         <div className="searchForm">
           <form action="">
             <div>
-              <input type="text" name="searchName" id="searchName" />
+              <input
+                type="text"
+                name="searchName"
+                id="searchName"
+                ref={searchNickNameRef}
+              />
             </div>
             <p>닉네임으로 검색해보세요</p>
           </form>
           <button>
-            <img src={searchBtn} alt="searchBtn" />
+            <img src={searchBtn} alt="searchBtn" onClick={onClickSearch} />
           </button>
         </div>
+        {searchResult ? (
+          <>
+            <h2>검색결과</h2>
+            <div>아이디 : {searchResult.user_id}</div>
+            <div>닉네임 : {searchResult.user_nickname}</div>
+            <button onClick={gotoSend}>보내기</button>
+          </>
+        ) : (
+          <></>
+        )}
       </div>
     </>
   );

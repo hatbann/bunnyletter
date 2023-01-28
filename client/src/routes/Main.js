@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Nav from '../components/Nav';
+import { useSelector } from 'react-redux';
 import { UserContext } from '../App';
 
 import letter from '../images/letter.png';
@@ -8,11 +9,11 @@ import letter from '../images/letter.png';
 import './css/main.css';
 
 const Main = () => {
-  const user = useContext(UserContext);
+  const isLoggingIn = useSelector((state) => state.user.user.isLoggingIn);
   const navigate = useNavigate();
 
   function ClickSendBtn() {
-    if (user) {
+    if (isLoggingIn) {
       navigate('/searchDear');
     } else {
       navigate('/login');

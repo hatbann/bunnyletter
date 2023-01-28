@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import domtoimage from 'dom-to-image';
 import { saveAs } from 'file-saver';
+import { useLocation } from 'react-router-dom';
 
 import Nav from '../components/Nav';
 import './css/writeLetter.css';
@@ -8,8 +9,12 @@ import bunny from '../images/Bunny.png';
 import { useNavigate } from 'react-router-dom';
 
 const MakeBunny = () => {
-  let buunyCardRef = useRef();
   const navigate = useNavigate();
+  const location = useLocation();
+  let buunyCardRef = useRef();
+  const receiver = location.state.searchResult;
+
+  console.log(receiver);
 
   const onCapture = () => {
     const card = buunyCardRef.current;
