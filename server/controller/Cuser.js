@@ -59,7 +59,7 @@ exports.postLogin = async (req, res) => {
   console.log('reqbody', req.body);
   //const idsave = req.body.idsave;
 
-  console.log(User);
+
   let result = await User.findOne({
     raw: true,
     where: { user_id: enteredId },
@@ -76,7 +76,6 @@ exports.postLogin = async (req, res) => {
     if (samePW) {
       req.session.save(function () {
         req.session.user = result;
-
         res.send({
           check: true,
           msg: '로그인에 성공하셨습니다!',
@@ -91,6 +90,27 @@ exports.postLogin = async (req, res) => {
   }
 };
 
+
+exports.postSearch = async (req, res) => {
+  const searchNickName = req.body.searchNickName;
+
+  console.log(searchNickName);
+  let result = await User.findOne({
+    raw: true,
+    where: { user_nickname: searchNickName },
+  });
+
+  if (!result) {
+    console.log('!', result);
+    res.send({
+      check: false,
+      msg: '찾는 정보가 없습니다.',
+    });
+  } else {
+    res.send({
+      userInfo: result,
+    });
+
 exports.deleteAccount = async (req, res) => {
   console.log(req.body);
 
@@ -101,5 +121,6 @@ exports.deleteAccount = async (req, res) => {
 
   if (result) {
     res.send('회원 탈퇴가 완료되었습니다.');
+
   }
 };

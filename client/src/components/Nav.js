@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
-import { UserContext } from '../App';
 import { useDispatch, useSelector } from 'react-redux';
+
 import { logout } from '../store/module/user';
 
 import logo from '../images/Logo.png';
