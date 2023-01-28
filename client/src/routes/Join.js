@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef } from "react";
 import axios from "axios";
 import Nav from "../components/Nav";
 
@@ -7,42 +7,47 @@ import joinBtn from "../images/JoinBtn.png";
 import "./css/join.css";
 
 const Join = () => {
-  const [emailJoin, setEmailJoin] = useState("");
-  const [pwJoin, setPwJoin] = useState("");
-  const [nicknameJoin, setNicknameJoin] = useState("");
+  const idRef = useRef();
+  const pwRef = useRef();
+  const nickNameRef = useRef();
 
-  const register = (e) => {
-    e.preventDefault();
-    console.log(emailJoin);
-    console.log(pwJoin);
-    console.log(nicknameJoin);
+  function onClickJoin() {
+    console.log(idRef.current.value);
+    if (idRef.current.value === "" || idRef.current.value === undefined) {
+      alert("아이디를 입력하세요");
+      idRef.current.focus();
+      return false;
+    }
 
-    const API = "http://localhost:4000/join";
+    if (pwRef.current.value === "" || pwRef.current.value === undefined) {
+      alert("비밀번호를 입력하세요");
+      pwRef.current.focus();
+      return false;
+    }
 
-    let body = {
-      email: emailJoin,
-      pw: pwJoin,
-      nickname: nicknameJoin,
-    };
+    if (
+      nickNameRef.current.value === "" ||
+      nickNameRef.current.value === undefined
+    ) {
+      alert("닉네임를을 입력하세요");
+      nickNameRef.current.focus();
+      return false;
+    }
 
-    // const userReg = async (event) => {
-    //   event.preventDefault();
-    //   const data = {
-    //     email: emailJoin,
-    //     pw: pwJoin,
-    //     nickname: nicknameJoin,
-    //   };
-    // };
-    axios.post(API, body).then((res) => {
-      console.log(res);
-      //   if (res.data == true) {
-      //     alert("회원가입을 환영합니다!");
-      //   } else {
-      //     alert("다시 한번 시도해주세요.");
-      //   }
-      // });
-    });
-  };
+    axios
+      .post("http://localhost:8000/join", {
+        id: idRef.current.value,
+        pw: pwRef.current.value,
+        nickName: nickNameRef.current.value,
+      })
+      .then((res) => {
+        if (res.data.check === true) {
+          console.log("clickLogin", res);
+        } else {
+          alert("실패");
+        }
+      });
+  }
 
   return (
     <>
@@ -50,45 +55,28 @@ const Join = () => {
       <div className="join section">
         <h1>Join</h1>
         <div className="loginForm">
-          <form method="POST" onSubmit={register}>
+          <form action="">
             <div>
-              <label htmlFor="userEmail">Email</label>
-              <input
-                type="email"
-                name="userEmail"
-                id="userEmail"
-                onChange={(e) => {
-                  setEmailJoin(e.target.value);
-                }}
-              />
+              <label htmlFor="userId">ID</label>
+              <input type="text" name="userId" id="userId" ref={idRef} />
             </div>
             <div>
               <label htmlFor="userPw">PW</label>
-              <input
-                type="password"
-                name="userPw"
-                id="userPw"
-                onChange={(e) => {
-                  setPwJoin(e.target.value);
-                }}
-              />
+              <input type="password" name="userPw" id="userPw" ref={pwRef} />
             </div>
             <div>
-              <label htmlFor="userNickname">Nickname</label>
+              <label htmlFor="userEmail">닉네임</label>
               <input
                 type="text"
-                name="userNickname"
-                id="userNickname"
-                onChange={(e) => {
-                  setNicknameJoin(e.target.value);
-                }}
+                name="userNickName"
+                id="userNickName"
+                ref={nickNameRef}
               />
             </div>
-
-            <button type="submit">
-              <img src={joinBtn} alt="loginBtn" />
-            </button>
           </form>
+          <button>
+            <img src={joinBtn} alt="loginBtn" onClick={onClickJoin} />
+          </button>
         </div>
       </div>
     </>
