@@ -1,6 +1,6 @@
 const User = (Sequelize, DataTypes) => {
   return Sequelize.define(
-    'user',
+    "user",
     {
       user_id: {
         type: DataTypes.STRING(45),
@@ -8,7 +8,7 @@ const User = (Sequelize, DataTypes) => {
         primaryKey: true,
       },
       user_pw: {
-        type: DataTypes.STRING(45),
+        type: DataTypes.STRING(255),
         allowNull: false,
       },
       user_nickname: {
@@ -17,7 +17,7 @@ const User = (Sequelize, DataTypes) => {
       },
     },
     {
-      tableName: 'user',
+      tableName: "user",
       freezeTableName: true,
       timestamps: false,
     }
