@@ -19,7 +19,7 @@ const AppRouter = () => {
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/login" element={<Login />} />
-        <Route path="bunnyletter/join" element={<Join />} />
+        <Route path="/join" element={<Join />} />
         <Route path="/makeBunny" element={<MakeBunny />} />
         <Route path="/mypage" element={<Mypage />} />
         <Route path="/searchDear" element={<SearchDear />} />

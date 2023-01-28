@@ -11,29 +11,37 @@ const Join = () => {
   const [pwJoin, setPwJoin] = useState("");
   const [nicknameJoin, setNicknameJoin] = useState("");
 
-  const register = () => {
-    const API = "http://localhost:3000/bunnyletter/join";
-    axios
-      .post(
-        API,
-        {
-          email: emailJoin,
-          pw: pwJoin,
-          nickname: nicknameJoin,
-        },
-        {
-          headers: new Headers(),
-        }
-      )
-      .then((res) => {
-        console.log(res);
-        //   if (res.data == true) {
-        //     alert("회원가입을 환영합니다!");
-        //   } else {
-        //     alert("다시 한번 시도해주세요.");
-        //   }
-        // });
-      });
+  const register = (e) => {
+    e.preventDefault();
+    console.log(emailJoin);
+    console.log(pwJoin);
+    console.log(nicknameJoin);
+
+    const API = "http://localhost:4000/join";
+
+    let body = {
+      email: emailJoin,
+      pw: pwJoin,
+      nickname: nicknameJoin,
+    };
+
+    // const userReg = async (event) => {
+    //   event.preventDefault();
+    //   const data = {
+    //     email: emailJoin,
+    //     pw: pwJoin,
+    //     nickname: nicknameJoin,
+    //   };
+    // };
+    axios.post(API, body).then((res) => {
+      console.log(res);
+      //   if (res.data == true) {
+      //     alert("회원가입을 환영합니다!");
+      //   } else {
+      //     alert("다시 한번 시도해주세요.");
+      //   }
+      // });
+    });
   };
 
   return (
@@ -77,7 +85,7 @@ const Join = () => {
               />
             </div>
 
-            <button onClick={() => register()}>
+            <button type="submit">
               <img src={joinBtn} alt="loginBtn" />
             </button>
           </form>
