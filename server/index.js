@@ -38,6 +38,9 @@ app.post('/login', Cuser.postLogin);
 app.post('/join', Cuser.postJoin);
 app.post('/search', Cuser.postSearch);
 
+app.delete('/deleteUser', Cuser.deleteAccount);
+
+
 const PORT = process.env.PORT || 8000;
 
 app.listen(PORT, () => {

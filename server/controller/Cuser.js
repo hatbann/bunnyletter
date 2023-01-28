@@ -57,6 +57,8 @@ exports.postLogin = async (req, res) => {
   const enteredId = req.body.id;
   const enteredPassword = req.body.pw;
   console.log('reqbody', req.body);
+  //const idsave = req.body.idsave;
+
 
   let result = await User.findOne({
     raw: true,
@@ -88,6 +90,7 @@ exports.postLogin = async (req, res) => {
   }
 };
 
+
 exports.postSearch = async (req, res) => {
   const searchNickName = req.body.searchNickName;
 
@@ -107,5 +110,17 @@ exports.postSearch = async (req, res) => {
     res.send({
       userInfo: result,
     });
+
+exports.deleteAccount = async (req, res) => {
+  console.log(req.body);
+
+  let result = await User.destroy({
+    where: { user_id: req.body.user_id },
+  });
+  console.log(result);
+
+  if (result) {
+    res.send('회원 탈퇴가 완료되었습니다.');
+
   }
 };
