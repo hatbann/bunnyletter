@@ -1,4 +1,4 @@
-const { User } = require('../model/index');
+const { User, Letter } = require('../model/index');
 const bcrypt = require('bcryptjs');
 
 // 회원가입 POST
@@ -59,7 +59,6 @@ exports.postLogin = async (req, res) => {
   console.log('reqbody', req.body);
   //const idsave = req.body.idsave;
 
-
   let result = await User.findOne({
     raw: true,
     where: { user_id: enteredId },
@@ -90,7 +89,7 @@ exports.postLogin = async (req, res) => {
   }
 };
 
-
+//편지 닉네임 검색 POST
 exports.postSearch = async (req, res) => {
   const searchNickName = req.body.searchNickName;
 
@@ -110,7 +109,10 @@ exports.postSearch = async (req, res) => {
     res.send({
       userInfo: result,
     });
+  }
+};
 
+// 마이페이지 회원 탈퇴 DELETE
 exports.deleteAccount = async (req, res) => {
   console.log(req.body);
 
@@ -121,6 +123,48 @@ exports.deleteAccount = async (req, res) => {
 
   if (result) {
     res.send('회원 탈퇴가 완료되었습니다.');
+  }
+};
 
+// 편지 이미지 DB 저장 POST
+exports.postSaveLetter = async (req, res) => {
+  const sender_id = req.body.senderID;
+  const receiver_id = req.body.receiverID;
+  const img_url = req.body.imgURL;
+  const letter_context = req.body.letter_context;
+
+  const data = {
+    sender_id: sender_id,
+    receiver_id: receiver_id,
+    img_url: img_url,
+    letter_context: letter_context,
+  };
+
+  const sameLetter = await Letter.findOne({
+    raw: true,
+    where: {
+      sender_id: sender_id,
+      receiver_id: receiver_id,
+      letter_context: letter_context,
+    },
+  });
+
+  if (!sameLetter) {
+    await Letter.create(data)
+      .then((result) => {
+        console.log(result);
+        if (result) {
+          res.send({ check: true, msg: '편지함에 편지를 저장했습니다!' });
+        } else res.send({ check: false, msg: '다시 한번 시도해주세요.' });
+      })
+      .catch((err) => {
+        console.log(err);
+        throw err;
+      });
+  } else {
+    res.send({
+      check: false,
+      msg: '이미 저장된 편지입니다!',
+    });
   }
 };
