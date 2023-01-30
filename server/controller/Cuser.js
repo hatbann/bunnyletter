@@ -42,7 +42,11 @@ exports.postJoin = async (req, res) => {
       await User.create(data)
         .then((result) => {
           console.log(result);
-          res.send({ check: true, msg: '회원가입에 성공했습니다!' });
+          res.send({
+            check: true,
+            msg: '회원가입에 성공했습니다!',
+            userInfo: data,
+          });
         })
         .catch((err) => {
           console.log(err);

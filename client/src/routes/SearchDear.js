@@ -69,12 +69,12 @@ const SearchDear = () => {
           </button>
         </div>
         {searchResult ? (
-          <>
+          <div className="searchResult">
             <h2>검색결과</h2>
             <div>아이디 : {searchResult.user_id}</div>
             <div>닉네임 : {searchResult.user_nickname}</div>
             <button onClick={gotoSend}>보내기</button>
-          </>
+          </div>
         ) : (
           <></>
         )}

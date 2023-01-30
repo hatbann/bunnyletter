@@ -26,11 +26,16 @@ const ShareKakao = () => {
         kakao.init('d97b7b839267dc8a1120ffca40fbf8d3');
       }
 
+      /*
+        axios로 letter db에 저장 => db에서 가져오기
+        => 가져온 이미지를 보내기
+      */
+
       kakao.Link.createCustomButton({
         container: '#kakaotalk-sharing-btn',
         templateId: 88708,
         templateArgs: {
-          image: imgURL,
+          img: 'https://i.pinimg.com/564x/1c/ee/c0/1ceec0a79c4516cb3171a1e9a482e64f.jpg',
         },
       });
     }
@@ -60,14 +65,14 @@ const ShareKakao = () => {
 
   return (
     <>
-      <Nav />
-      <div className="section">
+      <div className="section share">
+        <Nav />
         <img src={imgURL} alt="" id="bunnyBlobImg" />
-      </div>
       <button onClick={onClickShare} id="kakaotalk-sharing-btn">
         카카오톡
       </button>
       <button onClick={onClickSave}>저장하기</button>
+      </div>
     </>
   );
 };

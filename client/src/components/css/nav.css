@@ -13,15 +13,24 @@
   width: 70px;
 }
 
-.navLinks a:first-child{
+.navLinks a:first-child {
   margin-right: 20px;
 }
 
-.navLinks a{
+.navLinks a {
   font-size: 24px;
   font-weight: 600;
 }
 
-.active{
+.active {
   color: white;
+}
+
+.navLinks > button {
+  font-size: 24px;
+  border: none;
+  background-color: transparent;
+  font-weight: 600;
+  color: #282c34;
+  cursor: pointer;
 }
