@@ -107,13 +107,17 @@
 .contentForm form textarea {
   width: 294px;
   height: 192px;
-  font-size: 20px;
+  font-size: 15px;
   border: none;
   resize: none;
 }
 
 .contentForm form textarea:focus {
   outline: none;
+}
+
+.write.section > p {
+  margin-top: 20px;
 }
 
 .sendBtn {

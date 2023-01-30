@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Nav from '../components/Nav';
@@ -6,22 +6,57 @@ import Main from './Main';
 
 import './css/mypage.css';
 import axios from 'axios';
+import { useEffect } from 'react';
 
 const Mypage = () => {
   const user = useSelector((state) => state.user.user.data);
   const isLoggingIn = useSelector((state) => state.user.user.isLoggingIn);
+  const [listIdx, setListIdx] = useState('send');
+  const [letters, setLetters] = useState();
 
   //console.log(useSele ctor((state) => state.user));
 
   const sendBtnRef = useRef();
   const receiveBtnRef = useRef();
 
+  useEffect(() => {
+    if (listIdx === 'send') {
+      getSendLetters();
+    } else {
+      getReceiveLetters();
+    }
+  }, [listIdx]);
+
+  const getSendLetters = () => {
+    axios
+      .post('http://localhost:8000/getSendLetters', {
+        userId: user.user_id,
+      })
+      .then((res) => {
+        console.log(res.data);
+        setLetters(res.data);
+      });
+  };
+
+  const getReceiveLetters = () => {
+    axios
+      .post('http://localhost:8000/getReceiveLetters', {
+        userId: user.user_id,
+      })
+      .then((res) => {
+        console.log(res.data);
+        setLetters(res.data);
+      });
+  };
+
   const onClickBtn = (e) => {
     console.log(sendBtnRef.current.value);
     if (e.target.value === 'send') {
+      setListIdx('send');
       sendBtnRef.current.classList.add('active');
       receiveBtnRef.current.classList.remove('active');
     } else {
+      setListIdx('receive');
       sendBtnRef.current.classList.remove('active');
       receiveBtnRef.current.classList.add('active');
     }

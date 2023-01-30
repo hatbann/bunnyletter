@@ -38,6 +38,9 @@ app.post('/login', Cuser.postLogin);
 app.post('/join', Cuser.postJoin);
 app.post('/search', Cuser.postSearch);
 app.post('/saveletter', Cuser.postSaveLetter);
+app.post('/getLetterImg', Cuser.postGetImg);
+app.post('/getSendLetters', Cuser.postGetSendLetters);
+app.post('/getReceiveLetters', Cuser.postGetReceivedLetters);
 
 app.delete('/deleteUser', Cuser.deleteAccount);
 
