@@ -10,7 +10,6 @@ import './css/nav.css';
 const Nav = () => {
   const user = useSelector((state) => state.user.user.data);
   const isLoggingIn = useSelector((state) => state.user.user.isLoggingIn);
-  console.log(user, isLoggingIn);
 
   const dispatch = useDispatch();
 

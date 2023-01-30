@@ -25,6 +25,7 @@ db.sequelize
   });
 
 db.User = require('./User')(sequelize, Sequelize);
+db.Letter = require('./Letter')(sequelize, Sequelize);
 
 //후에 데이터베이스 관계 설정하기
 

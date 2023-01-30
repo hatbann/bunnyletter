@@ -28,14 +28,13 @@ const SearchDear = () => {
         searchNickName: searchNickNameRef.current.value,
       })
       .then((res) => {
-        if (res.data.check == false) {
-          alert('다시 검색하세요');
+        if (res.data.check === false) {
+          alert(res.data.msg);
         } else {
-          console.log(res.data);
+          //console.log(res.data);
 
           let result = res.data.userInfo;
           setSearchResult(result);
-          console.log(searchResult);
         }
       });
   };
