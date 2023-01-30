@@ -7,31 +7,44 @@ import Nav from '../components/Nav';
 import './css/writeLetter.css';
 import bunny from '../images/Bunny.png';
 import { useNavigate } from 'react-router-dom';
+import user from '../store/module/user';
+import { useSelector } from 'react-redux';
 
 const MakeBunny = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  let buunyCardRef = useRef();
+
+  let bunnyCardRef = useRef();
+  let textAreaRef = useRef();
+
   const receiver = location.state.searchResult;
 
-  console.log(receiver);
+  const onClickSend = () => {
+    let letterContext = textAreaRef.current.value;
+    if (letterContext === '' || letterContext === undefined) {
+      alert('편지 내용을 입력해주세요.');
+    } else {
+      //편지 내용 세션 저장
+      sessionStorage.setItem('letter_context', letterContext);
 
-  const onCapture = () => {
-    const card = buunyCardRef.current;
-    domtoimage.toBlob(card).then((blob) => {
-      navigate('/shareKakao', { state: blob });
-    });
+      const card = bunnyCardRef.current;
+
+      domtoimage.toBlob(card).then((blob) => {
+        navigate('/shareKakao', { state: { blob: blob, receiver: receiver } });
+      });
+    }
   };
 
   return (
     <>
       <Nav />
       <div className="write section">
-        <div className="contentForm" id="bunnyForm" ref={buunyCardRef}>
+        <div className="contentForm" id="bunnyForm" ref={bunnyCardRef}>
           <img src={bunny} alt="" />
           <form action="">
             <div>
               <textarea
+                ref={textAreaRef}
                 name="content"
                 id="content"
                 cols="30"
@@ -40,7 +53,8 @@ const MakeBunny = () => {
             </div>
           </form>
         </div>
-        <button className="sendBtn" onClick={onCapture}>
+        <p>To. {receiver.user_id}</p>
+        <button className="sendBtn" onClick={onClickSend}>
           Send
         </button>
       </div>

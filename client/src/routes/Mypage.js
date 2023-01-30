@@ -10,6 +10,9 @@ import axios from 'axios';
 const Mypage = () => {
   const user = useSelector((state) => state.user.user.data);
   const isLoggingIn = useSelector((state) => state.user.user.isLoggingIn);
+
+  //console.log(useSele ctor((state) => state.user));
+
   const sendBtnRef = useRef();
   const receiveBtnRef = useRef();
 
@@ -25,7 +28,6 @@ const Mypage = () => {
   };
 
   const deleteAccount = () => {
-    console.log(user.user_id);
     const confirm = window.confirm('정말로 탈퇴하시겠습니까?');
     if (confirm === true) {
       axios
