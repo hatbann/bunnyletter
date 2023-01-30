@@ -42,7 +42,11 @@ exports.postJoin = async (req, res) => {
       await User.create(data)
         .then((result) => {
           console.log(result);
-          res.send({ check: true, msg: '회원가입에 성공했습니다!' });
+          res.send({
+            check: true,
+            msg: '회원가입에 성공했습니다!',
+            userInfo: data,
+          });
         })
         .catch((err) => {
           console.log(err);
@@ -58,7 +62,6 @@ exports.postLogin = async (req, res) => {
   const enteredPassword = req.body.pw;
   console.log('reqbody', req.body);
   //const idsave = req.body.idsave;
-
 
   let result = await User.findOne({
     raw: true,
@@ -90,7 +93,6 @@ exports.postLogin = async (req, res) => {
   }
 };
 
-
 exports.postSearch = async (req, res) => {
   const searchNickName = req.body.searchNickName;
 
@@ -110,6 +112,8 @@ exports.postSearch = async (req, res) => {
     res.send({
       userInfo: result,
     });
+  }
+};
 
 exports.deleteAccount = async (req, res) => {
   console.log(req.body);
@@ -121,6 +125,5 @@ exports.deleteAccount = async (req, res) => {
 
   if (result) {
     res.send('회원 탈퇴가 완료되었습니다.');
-
   }
 };

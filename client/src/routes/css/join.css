@@ -43,3 +43,7 @@
   cursor: pointer;
   margin-left: 30px;
 }
+
+.loginForm button img {
+  width: 100px;
+}

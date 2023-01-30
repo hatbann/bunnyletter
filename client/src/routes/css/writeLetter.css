@@ -27,7 +27,7 @@
 }
 
 .searchForm form div {
-  margin-bottom: 39px;
+  margin-bottom: 20px;
 }
 
 .searchForm form input {
@@ -44,16 +44,56 @@
   margin-left: 30px;
 }
 
-.search.section p {
+.searchForm button img {
+  width: 100px;
+}
+
+.searchForm form p {
   font-size: 13px;
 }
 
+.searchResult {
+  margin-top: 40px;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.searchResult h2 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.searchResult div {
+  margin-bottom: 7px;
+}
+
+.searchResult button {
+  margin-top: 20px;
+  border: none;
+  padding: 5px 20px;
+  border-radius: 70px;
+  font-weight: 600;
+  background-color: white;
+  color: rgb(32, 32, 32);
+  cursor: pointer;
+}
+
+.searchResult button:hover {
+  background-color: rgb(32, 32, 32);
+  color: #f8c3cc;
+}
+
 /*편지 적는 부분*/
+.write.section {
+  padding-top: 38px;
+}
+
 .contentForm {
   display: flex;
   flex-direction: column;
   position: relative;
-  margin-top: 38px;
 }
 
 .contentForm form {
@@ -84,4 +124,34 @@
   font-size: 20px;
   border-radius: 70px;
   margin-top: 38px;
+  cursor: pointer;
+}
+
+/*공유하는 부분*/
+.section.share {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#bunnyBlobImg {
+  width: 400px;
+  margin-top: 250px;
+  margin-bottom: 30px;
+}
+
+.section.share > button {
+  margin-top: 20px;
+  border: none;
+  padding: 5px 20px;
+  border-radius: 70px;
+  font-weight: 600;
+  background-color: white;
+  color: rgb(32, 32, 32);
+  cursor: pointer;
+}
+
+.section.share > button:hover {
+  background-color: rgb(32, 32, 32);
+  color: #f8c3cc;
 }
