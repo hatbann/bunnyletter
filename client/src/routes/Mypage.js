@@ -8,11 +8,13 @@ import './css/mypage.css';
 import axios from 'axios';
 import { useEffect } from 'react';
 
+import Letter from '../components/Letter';
+
 const Mypage = () => {
   const user = useSelector((state) => state.user.user.data);
   const isLoggingIn = useSelector((state) => state.user.user.isLoggingIn);
   const [listIdx, setListIdx] = useState('send');
-  const [letters, setLetters] = useState();
+  const [letters, setLetters] = useState([]);
 
   //console.log(useSele ctor((state) => state.user));
 
@@ -105,6 +107,15 @@ const Mypage = () => {
                   내가 받은
                 </button>
               </div>
+              {letters.map((letter) => (
+                <Letter
+                  key={letter.id}
+                  imgUrl={letter.img_url}
+                  letterContext={letter.letter_context}
+                  receiverId={letter.receiver_id}
+                  senderId={letter.sender_id}
+                />
+              ))}
             </section>
           </div>
         </>
