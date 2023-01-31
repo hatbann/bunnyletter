@@ -29,6 +29,7 @@ const MakeBunny = () => {
 
       const card = bunnyCardRef.current;
 
+
       domtoimage.toPng(card).then((dataUrl) => {
         var img = new Image();
         img.src = dataUrl;
@@ -44,6 +45,25 @@ const MakeBunny = () => {
       //   state: { blob: blob, receiver: receiver, img: image },
       // });
       //});
+
+/*
+      let scale = 2;
+      domtoimage
+        .toBlob(card, {
+          width: card.clientWidth * scale,
+          height: card.clientHeight * scale,
+          style: {
+            transform: 'scale(' + scale + ')',
+            transformOrigin: 'top left',
+          },
+        })
+        .then((blob) => {
+          navigate('/shareKakao', {
+            state: { blob: blob, receiver: receiver },
+          });
+        });
+        */
+
     }
   };
 
