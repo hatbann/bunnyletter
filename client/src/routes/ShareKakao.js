@@ -62,7 +62,7 @@ const ShareKakao = () => {
       .then(async (res) => {
         console.log(res.data.letter);
         if (res.data.check === true) {
-          //window.location.href = '/mypage';
+          const arrayBuffer = await res.data.imgURL.arrayBuffer();
         } else {
           alert(res.data.msg);
         }
