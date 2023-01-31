@@ -5,12 +5,20 @@ import bunny from '../images/Bunny.png';
 import { useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
+import { useState } from 'react';
+import { useEffect } from 'react';
 
 const ShareKakao = () => {
   const location = useLocation();
+  const [finishSend, setFinishSend] = useState(false);
+  const [imgId, setImgId] = useState();
 
   const bunnyCard = location.state.blob;
   const imgURL = window.URL.createObjectURL(bunnyCard);
+
+  useEffect(() => {
+    console.log(imgId);
+  }, [imgId]);
 
   //img 세션 저장 -> but 새로고침마다 url 주소가 바뀜.
   sessionStorage.setItem('img_url', imgURL);
@@ -27,17 +35,31 @@ const ShareKakao = () => {
       }
 
       /*
-        axios로 letter db에 저장 => db에서 가져오기
+        db에서 가져오기
         => 가져온 이미지를 보내기
       */
 
-      kakao.Link.createCustomButton({
-        container: '#kakaotalk-sharing-btn',
-        templateId: 88708,
-        templateArgs: {
-          img: 'https://i.pinimg.com/564x/1c/ee/c0/1ceec0a79c4516cb3171a1e9a482e64f.jpg',
-        },
-      });
+      console.log(imgId);
+      axios
+        .post('http://localhost:8000/getLetterImg', {
+          imgId: imgId,
+        })
+        .then(async (res) => {
+          console.log(res.data.letter);
+          if (res.data.check === true) {
+            kakao.Link.cleanup();
+            kakao.Link.createCustomButton({
+              container: '#kakaotalk-sharing-btn',
+              templateId: 88708,
+              templateArgs: {
+                img: res.data.imgURL,
+              },
+            });
+            //window.location.href = '/mypage';
+          } else {
+            alert(res.data.msg);
+          }
+        });
     }
   };
 
@@ -47,7 +69,6 @@ const ShareKakao = () => {
     const senderID = user.user_id;
     const letterContext = sessionStorage.getItem('letter_context');
 
-    console.log(letterContext);
     axios
       .post('http://localhost:8000/saveletter', {
         imgURL: imgURL,
@@ -57,9 +78,15 @@ const ShareKakao = () => {
       })
       .then((res) => {
         if (res.data.check === true) {
+          setFinishSend(true);
+          setImgId(Number(res.data.imgId));
           alert(res.data.msg);
-          window.location.href = '/mypage';
-        } else alert(res.data.msg);
+          //window.location.href = '/mypage';
+        } else {
+          setFinishSend(true);
+
+          alert(res.data.msg);
+        }
       });
   };
 
@@ -68,10 +95,13 @@ const ShareKakao = () => {
       <div className="section share">
         <Nav />
         <img src={imgURL} alt="" id="bunnyBlobImg" />
-      <button onClick={onClickShare} id="kakaotalk-sharing-btn">
-        카카오톡
-      </button>
-      <button onClick={onClickSave}>저장하기</button>
+        {finishSend ? (
+          <button onClick={onClickShare} id="kakaotalk-sharing-btn">
+            카카오톡 공유하기
+          </button>
+        ) : (
+          <button onClick={onClickSave}>bunnyletter 전송하기</button>
+        )}
       </div>
     </>
   );
