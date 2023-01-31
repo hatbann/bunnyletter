@@ -8,9 +8,18 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 100vh;
 }
 
-.write.section h1 {
+.search.section{
+  background-color: #f8c3cc;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.search.section h1 {
   font-size: 64px;
   margin-bottom: 87px;
   margin-top: 0;
@@ -86,9 +95,10 @@
 }
 
 /*편지 적는 부분*/
-.write.section {
-  padding-top: 38px;
+.write.section{
+  padding-top: 70px;
 }
+
 
 .contentForm {
   display: flex;
@@ -100,16 +110,22 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  margin-left: -150px;
-  margin-top: 40px;
+  margin-left: -141px;
+  margin-top: 24px;
+}
+
+.contentForm img{
+  width: 360px;
 }
 
 .contentForm form textarea {
-  width: 294px;
-  height: 192px;
-  font-size: 15px;
+  width: 260px;
+  height: 150px;
+  font-size: 10px;
   border: none;
   resize: none;
+  border-radius: 10px;
+  padding: 10px;
 }
 
 .contentForm form textarea:focus {
@@ -139,7 +155,7 @@
 }
 
 #bunnyBlobImg {
-  width: 400px;
+  width: 350px;
   margin-top: 250px;
   margin-bottom: 30px;
 }
@@ -153,6 +169,7 @@
   background-color: white;
   color: rgb(32, 32, 32);
   cursor: pointer;
+  margin-bottom: 50px;
 }
 
 .section.share > button:hover {

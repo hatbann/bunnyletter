@@ -29,9 +29,21 @@ const MakeBunny = () => {
 
       const card = bunnyCardRef.current;
 
-      domtoimage.toBlob(card).then((blob) => {
-        navigate('/shareKakao', { state: { blob: blob, receiver: receiver } });
-      });
+      let scale = 2;
+      domtoimage
+        .toBlob(card, {
+          width: card.clientWidth * scale,
+          height: card.clientHeight * scale,
+          style: {
+            transform: 'scale(' + scale + ')',
+            transformOrigin: 'top left',
+          },
+        })
+        .then((blob) => {
+          navigate('/shareKakao', {
+            state: { blob: blob, receiver: receiver },
+          });
+        });
     }
   };
 
