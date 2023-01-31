@@ -65,7 +65,9 @@ const Mypage = () => {
   };
 
   const deleteAccount = () => {
-    const confirm = window.confirm('정말로 탈퇴하시겠습니까?');
+    const confirm = window.confirm(
+      '정말로 탈퇴하시겠습니까? 내가 받은 편지를 더이상 읽을 수 없게 됩니다.'
+    );
     if (confirm === true) {
       axios
         .delete('http://localhost:8000/deleteUser', {

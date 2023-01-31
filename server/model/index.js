@@ -29,4 +29,19 @@ db.Letter = require('./Letter')(sequelize, Sequelize);
 
 //후에 데이터베이스 관계 설정하기
 
+// LETTER - 외래키 참조 => SENDER_ID - USER_ID
+db.User.hasMany(db.Letter, {
+  foreignKey: 'sender_id',
+  sourceKey: 'user_id',
+  onDelete: 'cascade',
+  onUpdate: 'cascade',
+});
+
+db.Letter.belongsTo(db.User, {
+  foreignKey: 'sender_id',
+  sourceKey: 'user_id',
+  onDelete: 'cascade',
+  onUpdate: 'cascade',
+});
+
 module.exports = db;
