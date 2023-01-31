@@ -8,18 +8,41 @@ import axios from 'axios';
 import { useState } from 'react';
 import { useEffect } from 'react';
 
+import useDidMountEffect from '../components/useDidMountEffect';
+
 const ShareKakao = () => {
   const location = useLocation();
   const [finishSend, setFinishSend] = useState(false);
-  const [imgId, setImgId] = useState();
+  const [imgId, setImgId] = useState(0);
 
   const bunnyCard = location.state.blob;
   const imgURL = window.URL.createObjectURL(bunnyCard);
 
+  console.log('imgUrl', imgURL);
   useEffect(() => {
     console.log(imgId);
   }, [imgId]);
 
+  useDidMountEffect(() => {
+    if (window.Kakao) {
+      console.log(finishSend);
+      const kakao = window.Kakao;
+      if (!kakao.isInitialized()) {
+        kakao.init('d97b7b839267dc8a1120ffca40fbf8d3');
+      }
+
+      kakao.Link.createCustomButton({
+        container: '#kakaotalk-sharing-btn',
+        templateId: 88708,
+        templateArgs: {
+          img: 'https://i.pinimg.com/564x/4a/3f/07/4a3f07b8840c62b25bdfebb333133a48.jpg',
+        },
+      });
+    }
+  }, [finishSend]);
+
+  if (window.kakao) {
+  }
   //img 세션 저장 -> but 새로고침마다 url 주소가 바뀜.
   sessionStorage.setItem('img_url', imgURL);
 
@@ -27,40 +50,23 @@ const ShareKakao = () => {
 
   //카카오톡 공유하기
   const onClickShare = () => {
-    if (window.Kakao) {
-      const kakao = window.Kakao;
-
-      if (!kakao.isInitialized()) {
-        kakao.init('d97b7b839267dc8a1120ffca40fbf8d3');
-      }
-
-      /*
+    /*
         db에서 가져오기
         => 가져온 이미지를 보내기
       */
-
-      console.log(imgId);
-      axios
-        .post('http://localhost:8000/getLetterImg', {
-          imgId: imgId,
-        })
-        .then(async (res) => {
-          console.log(res.data.letter);
-          if (res.data.check === true) {
-            kakao.Link.cleanup();
-            kakao.Link.createCustomButton({
-              container: '#kakaotalk-sharing-btn',
-              templateId: 88708,
-              templateArgs: {
-                img: res.data.imgURL,
-              },
-            });
-            //window.location.href = '/mypage';
-          } else {
-            alert(res.data.msg);
-          }
-        });
-    }
+    console.log(imgId);
+    axios
+      .post('http://localhost:8000/getLetterImg', {
+        imgId: imgId,
+      })
+      .then(async (res) => {
+        console.log(res.data.letter);
+        if (res.data.check === true) {
+          const arrayBuffer = await res.data.imgURL.arrayBuffer();
+        } else {
+          alert(res.data.msg);
+        }
+      });
   };
 
   //letter DB 저장
@@ -81,10 +87,8 @@ const ShareKakao = () => {
           setFinishSend(true);
           setImgId(Number(res.data.imgId));
           alert(res.data.msg);
-          //window.location.href = '/mypage';
         } else {
           setFinishSend(true);
-
           alert(res.data.msg);
         }
       });
