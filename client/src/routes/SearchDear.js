@@ -50,7 +50,7 @@ const SearchDear = () => {
   return (
     <>
       <Nav />
-      <div className="write section">
+      <div className="search section">
         <h1>Search Dear</h1>
         <div className="searchForm">
           <form action="">
