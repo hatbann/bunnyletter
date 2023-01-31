@@ -58,23 +58,18 @@ const ShareKakao = () => {
         => 가져온 이미지를 보내기
       */
 
-
-      console.log(imgId);
-      axios
-        .post('http://localhost:8000/getLetterImg', {
-          imgId: imgId,
-        })
-        .then(async (res) => {
-          if (res.data.check === true) {
-  
-          } else {
-            alert(res.data.msg);
-          }
-        });
-    }
-
+    console.log(imgId);
+    axios
+      .post('http://localhost:8000/getLetterImg', {
+        imgId: imgId,
+      })
+      .then(async (res) => {
+        if (res.data.check === true) {
+        } else {
+          alert(res.data.msg);
+        }
+      });
   };
-
   //letter DB 저장
   const onClickSave = () => {
     const receiverID = location.state.receiver.user_id;
