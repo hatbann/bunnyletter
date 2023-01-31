@@ -15,14 +15,15 @@ const ShareKakao = () => {
   const [finishSend, setFinishSend] = useState(false);
   const [imgId, setImgId] = useState(0);
 
-  const imgURL = location.state.blob;
-  //const imgURL = window.URL.createObjectURL(bunnyCard);
+  const imgURL = location.state;
 
-  console.log(location.state);
+  //console.log(imgURL.blob);
+  //const imgURL = window.URL.createObjectURL(bunnyCard)
 
   console.log('imgUrl', imgURL);
   useEffect(() => {
     console.log(imgId);
+    // console.log(imgURL.blob);
   }, [imgId]);
 
   useDidMountEffect(() => {
@@ -56,19 +57,22 @@ const ShareKakao = () => {
         db에서 가져오기
         => 가져온 이미지를 보내기
       */
-    console.log(imgId);
-    axios
-      .post('http://localhost:8000/getLetterImg', {
-        imgId: imgId,
-      })
-      .then(async (res) => {
-        console.log(res.data.letter);
-        if (res.data.check === true) {
-          const arrayBuffer = await res.data.imgURL.arrayBuffer();
-        } else {
-          alert(res.data.msg);
-        }
-      });
+
+
+      console.log(imgId);
+      axios
+        .post('http://localhost:8000/getLetterImg', {
+          imgId: imgId,
+        })
+        .then(async (res) => {
+          if (res.data.check === true) {
+  
+          } else {
+            alert(res.data.msg);
+          }
+        });
+    }
+
   };
 
   //letter DB 저장
@@ -91,6 +95,8 @@ const ShareKakao = () => {
           alert(res.data.msg);
         } else {
           setFinishSend(true);
+          setImgId(Number(res.data.imgId));
+
           alert(res.data.msg);
         }
       });
@@ -100,7 +106,7 @@ const ShareKakao = () => {
     <>
       <div className="section share">
         <Nav />
-        <img src={imgURL} alt="" id="bunnyBlobImg" />
+        <img src={imgURL.blob} alt="" id="bunnyBlobImg" />
         {finishSend ? (
           <button onClick={onClickShare} id="kakaotalk-sharing-btn">
             카카오톡 공유하기

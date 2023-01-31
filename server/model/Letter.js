@@ -25,6 +25,11 @@ const Letter = (Sequelize, DataTypes) => {
         type: DataTypes.TEXT('long'),
         allowNull: false,
       },
+
+      img_base64: {
+        type: DataTypes.TEXT('long'),
+        allowNull: true,
+      },
     },
     {
       tableName: 'letter',

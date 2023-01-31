@@ -119,6 +119,7 @@ const Mypage = () => {
                   letterContext={letter.letter_context}
                   receiverId={letter.receiver_id}
                   senderId={letter.sender_id}
+                  base64={letter.img_base64}
                 />
               ))}
             </section>

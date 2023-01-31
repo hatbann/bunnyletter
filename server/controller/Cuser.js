@@ -142,6 +142,7 @@ exports.postSaveLetter = async (req, res) => {
     receiver_id: receiver_id,
     img_url: img_url,
     letter_context: letter_context,
+    img_base64: img_url.blob,
   };
 
   const sameLetter = await Letter.findOne({
@@ -161,7 +162,7 @@ exports.postSaveLetter = async (req, res) => {
           res.send({
             check: true,
             msg: '편지함에 편지를 저장했습니다!',
-            imgURL: result.dataValues.img_url,
+            imgURL: result.dataValues.img_base64,
             imgId: result.dataValues.id,
           });
         } else res.send({ check: false, msg: '다시 한번 시도해주세요.' });
@@ -173,7 +174,8 @@ exports.postSaveLetter = async (req, res) => {
   } else {
     res.send({
       check: false,
-      msg: '이미 저장된 편지입니다!',
+      msg: '이미 편지함에 저장된 편지 내용입니다!',
+      imgId: Number(sameLetter.id),
     });
   }
 };
@@ -195,22 +197,25 @@ exports.postGetImg = async (req, res) => {
   });
 };
 
+//MYPAGE
 exports.postGetSendLetters = async (req, res) => {
   const mylistLetter = await Letter.findAll({
+    raw: true,
     where: {
       sender_id: req.body.userId,
     },
   });
-  console.log(mylistLetter);
+
   res.send(mylistLetter);
 };
 
 exports.postGetReceivedLetters = async (req, res) => {
   const mylistLetter = await Letter.findAll({
+    raw: true,
     where: {
       receiver_id: req.body.userId,
     },
   });
-  console.log(mylistLetter);
+
   res.send(mylistLetter);
 };
