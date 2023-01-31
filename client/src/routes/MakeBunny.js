@@ -53,7 +53,7 @@ const MakeBunny = () => {
             </div>
           </form>
         </div>
-        <p>To. {receiver.user_id}</p>
+        <p>Dear. {receiver.user_id}</p>
         <button className="sendBtn" onClick={onClickSend}>
           Send
         </button>
