@@ -13,13 +13,14 @@ const ShareKakao = () => {
   const [finishSend, setFinishSend] = useState(false);
   const [imgId, setImgId] = useState();
 
-  const imgURL = location.state.blob;
-  //const imgURL = window.URL.createObjectURL(bunnyCard);
+  const imgURL = location.state;
 
-  console.log(location.state);
+  //console.log(imgURL.blob);
+  //const imgURL = window.URL.createObjectURL(bunnyCard)
 
   useEffect(() => {
     console.log(imgId);
+    // console.log(imgURL.blob);
   }, [imgId]);
 
   //img 세션 저장 -> but 새로고침마다 url 주소가 바뀜.
@@ -47,15 +48,12 @@ const ShareKakao = () => {
           imgId: imgId,
         })
         .then(async (res) => {
-          console.log(res.data.letter);
           if (res.data.check === true) {
             kakao.Link.cleanup();
             kakao.Link.createCustomButton({
               container: '#kakaotalk-sharing-btn',
               templateId: 88708,
-              templateArgs: {
-                img: res.data.imgURL,
-              },
+              templateArgs: {},
             });
             //window.location.href = '/mypage';
           } else {
@@ -86,7 +84,7 @@ const ShareKakao = () => {
           //window.location.href = '/mypage';
         } else {
           setFinishSend(true);
-
+          setImgId(Number(res.data.imgId));
           alert(res.data.msg);
         }
       });
@@ -96,7 +94,7 @@ const ShareKakao = () => {
     <>
       <div className="section share">
         <Nav />
-        <img src={imgURL} alt="" id="bunnyBlobImg" />
+        <img src={imgURL.blob} alt="" id="bunnyBlobImg" />
         {finishSend ? (
           <button onClick={onClickShare} id="kakaotalk-sharing-btn">
             카카오톡 공유하기

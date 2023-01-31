@@ -32,6 +32,7 @@ const MakeBunny = () => {
       domtoimage.toPng(card).then((dataUrl) => {
         var img = new Image();
         img.src = dataUrl;
+        //console.log(img);
 
         navigate('/shareKakao', {
           state: { blob: img.src, receiver: receiver },
