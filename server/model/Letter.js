@@ -17,7 +17,7 @@ const Letter = (Sequelize, DataTypes) => {
         allowNull: false,
       },
       img_url: {
-        type: DataTypes.TEXT('long'),
+        type: DataTypes.BLOB,
         allowNull: false,
       },
 

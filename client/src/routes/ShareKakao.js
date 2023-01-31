@@ -15,8 +15,10 @@ const ShareKakao = () => {
   const [finishSend, setFinishSend] = useState(false);
   const [imgId, setImgId] = useState(0);
 
-  const bunnyCard = location.state.blob;
-  const imgURL = window.URL.createObjectURL(bunnyCard);
+  const imgURL = location.state.blob;
+  //const imgURL = window.URL.createObjectURL(bunnyCard);
+
+  console.log(location.state);
 
   console.log('imgUrl', imgURL);
   useEffect(() => {
@@ -44,7 +46,7 @@ const ShareKakao = () => {
   if (window.kakao) {
   }
   //img 세션 저장 -> but 새로고침마다 url 주소가 바뀜.
-  sessionStorage.setItem('img_url', imgURL);
+  //sessionStorage.setItem('img_url', imgURL);
 
   const user = useSelector((state) => state.user.user.data);
 

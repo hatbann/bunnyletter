@@ -10,6 +10,8 @@ import { useEffect } from 'react';
 
 import Letter from '../components/Letter';
 
+import bufferToDataUrl from 'buffer-to-data-url';
+
 const Mypage = () => {
   const user = useSelector((state) => state.user.user.data);
   const isLoggingIn = useSelector((state) => state.user.user.isLoggingIn);
@@ -36,7 +38,8 @@ const Mypage = () => {
       })
       .then((res) => {
         console.log(res.data);
-        setLetters(res.data);
+        let letters = res.data;
+        setLetters(letters);
       });
   };
 
