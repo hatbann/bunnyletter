@@ -9,7 +9,9 @@ import './css/join.css';
 const Join = () => {
   const idRef = useRef();
   const pwRef = useRef();
+  const checkPwRef = useRef();
   const nickNameRef = useRef();
+  const pwContentRef = useRef();
 
   function onClickJoin() {
     console.log(idRef.current.value);
@@ -19,7 +21,12 @@ const Join = () => {
       return false;
     }
 
-    if (pwRef.current.value === '' || pwRef.current.value === undefined) {
+    if (
+      pwRef.current.value === '' ||
+      pwRef.current.value === undefined ||
+      checkPwRef.current.value === '' ||
+      checkPwRef.current.value === undefined
+    ) {
       alert('비밀번호를 입력하세요.');
       pwRef.current.focus();
       return false;
@@ -34,9 +41,18 @@ const Join = () => {
       return false;
     }
 
-    if (idRef.current.value.length < 6 || pwRef.current.value.length < 6) {
-      alert('아이디, 비밀번호는 6자리 이상으로 입력해주세요.');
+    //비밀번호 체크 정규식: 숫자, 영문 6자리 이상 입력 가능
+    const CheckReg = (str) => {
+      let reg = /^(?=.*[A-Za-z])(?=.*[0-9]).{6,20}$/;
+      return reg.test(str);
+    };
+
+    if (!CheckReg(idRef.current.value) || !CheckReg(pwRef.current.value)) {
+      alert('아이디, 비밀번호는 영문, 숫자 조합으로 6자리 이상 입력해주세요.');
+    } else if (pwRef.current.value !== checkPwRef.current.value) {
+      pwContentRef.current.innerText = '비밀번호가 일치하지 않습니다. ';
     } else {
+      pwContentRef.current.innerText = '비밀번호가 일치합니다.';
       axios
         .post('http://localhost:8000/join', {
           id: idRef.current.value,
@@ -76,6 +92,15 @@ const Join = () => {
               <input type="password" name="userPw" id="userPw" ref={pwRef} />
             </div>
             <div>
+              <label htmlFor="userConfirmPw">PW Check</label>
+              <input
+                type="password"
+                name="userConfirmPw"
+                id="userConfirmPw"
+                ref={checkPwRef}
+              ></input>
+            </div>
+            <div>
               <label htmlFor="userEmail">닉네임</label>
               <input
                 type="text"
@@ -84,6 +109,7 @@ const Join = () => {
                 ref={nickNameRef}
               />
             </div>
+            <p className="passwordContent" ref={pwContentRef}></p>
           </form>
           <button>
             <img src={joinBtn} alt="loginBtn" onClick={onClickJoin} />
