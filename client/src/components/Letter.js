@@ -10,12 +10,13 @@ const Letter = (data) => {
   const [senderId, setSenderId] = useState(data.senderId);
   const [imgBase64, setImgBase64] = useState(data.base64);
 
-  function toBase64(arr) {
-    //arr = new Uint8Array(arr) if it's an ArrayBuffer
-    return btoa(
-      arr.reduce((data, byte) => data + String.fromCharCode(byte), '')
-    );
-  }
+  // function toBase64(arr) {
+  //   //arr = new Uint8Array(arr) if it's an ArrayBuffer
+  //   return btoa(
+  //     arr.reduce((data, byte) => data + String.fromCharCode(byte), '')
+  //   );
+  // }
+
   return (
     <div>
       <span>From. {senderId}</span>

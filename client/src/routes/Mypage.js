@@ -10,8 +10,6 @@ import { useEffect } from 'react';
 
 import Letter from '../components/Letter';
 
-import bufferToDataUrl from 'buffer-to-data-url';
-
 const Mypage = () => {
   const user = useSelector((state) => state.user.user.data);
   const isLoggingIn = useSelector((state) => state.user.user.isLoggingIn);
@@ -69,7 +67,7 @@ const Mypage = () => {
 
   const deleteAccount = () => {
     const confirm = window.confirm(
-      '정말로 탈퇴하시겠습니까? 내가 받은 편지를 더이상 읽을 수 없게 됩니다.'
+      '정말로 탈퇴하시겠습니까? 내가 받은 편지와 내가 보낸 편지 모두 사라지게 되며 복구가 불가능합니다.'
     );
     if (confirm === true) {
       axios
@@ -83,6 +81,7 @@ const Mypage = () => {
         });
     }
   };
+  console.log(letters);
 
   return (
     <>
@@ -93,6 +92,7 @@ const Mypage = () => {
             <section className="userInfo">
               <h2>{user.user_nickname} 님</h2>
               <button onClick={deleteAccount}>회원탈퇴</button>
+              <button>정보수정</button>
             </section>
             <section className="letters">
               <div className="btns">
