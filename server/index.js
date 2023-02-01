@@ -41,7 +41,13 @@ app.post('/getLetterImg', Cuser.postGetImg);
 app.post('/getSendLetters', Cuser.postGetSendLetters);
 app.post('/getReceiveLetters', Cuser.postGetReceivedLetters);
 
+app.put('/editProfile', Cuser.fetchProfile);
+
 app.delete('/deleteUser', Cuser.deleteAccount);
+
+app.use(function (error, req, res, next) {
+  res.render('500');
+});
 
 const PORT = process.env.PORT || 8000;
 

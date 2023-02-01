@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Nav from '../components/Nav';
 
@@ -14,41 +15,45 @@ const Join = () => {
   const pwContentRef = useRef();
 
   function onClickJoin() {
-    console.log(idRef.current.value);
-    if (idRef.current.value === '' || idRef.current.value === undefined) {
-      alert('아이디를 입력하세요.');
-      idRef.current.focus();
-      return false;
-    }
-
-    if (
-      pwRef.current.value === '' ||
-      pwRef.current.value === undefined ||
-      checkPwRef.current.value === '' ||
-      checkPwRef.current.value === undefined
-    ) {
-      alert('비밀번호를 입력하세요.');
-      pwRef.current.focus();
-      return false;
-    }
-
-    if (
-      nickNameRef.current.value === '' ||
-      nickNameRef.current.value === undefined
-    ) {
-      alert('닉네임를 입력하세요.');
-      nickNameRef.current.focus();
-      return false;
-    }
-
     //비밀번호 체크 정규식: 숫자, 영문 6자리 이상 입력 가능
     const CheckReg = (str) => {
       let reg = /^(?=.*[A-Za-z])(?=.*[0-9]).{6,20}$/;
       return reg.test(str);
     };
 
-    if (!CheckReg(idRef.current.value) || !CheckReg(pwRef.current.value)) {
-      alert('아이디, 비밀번호는 영문, 숫자 조합으로 6자리 이상 입력해주세요.');
+    console.log(idRef.current.value);
+    if (idRef.current.value === '' || idRef.current.value === undefined) {
+      alert('아이디를 입력하세요.');
+      idRef.current.focus();
+      return false;
+    } else if (
+      pwRef.current.value === '' ||
+      pwRef.current.value === undefined
+    ) {
+      alert('비밀번호를 입력하세요.');
+      pwRef.current.focus();
+    } else if (
+      checkPwRef.current.value === '' ||
+      checkPwRef.current.value === undefined
+    ) {
+      alert('비밀번호 확인값을 입력해주세요.');
+      checkPwRef.current.focus();
+      return false;
+    } else if (
+      nickNameRef.current.value === '' ||
+      nickNameRef.current.value === undefined
+    ) {
+      alert('닉네임를 입력하세요.');
+      nickNameRef.current.focus();
+      return false;
+    } else if (
+      !CheckReg(idRef.current.value) ||
+      !CheckReg(pwRef.current.value) ||
+      !CheckReg(checkPwRef.current.value)
+    ) {
+      alert(
+        'ID, 비밀번호는 영문, 숫자 조합으로 6자리 이상 20자리 이하로 입력해주세요.'
+      );
     } else if (pwRef.current.value !== checkPwRef.current.value) {
       pwContentRef.current.innerText = '비밀번호가 일치하지 않습니다. ';
     } else {
@@ -110,6 +115,11 @@ const Join = () => {
               />
             </div>
             <p className="passwordContent" ref={pwContentRef}></p>
+            <div>
+              <Link className="loginLink" to="/login">
+                이미 계정이 있으신가요?
+              </Link>
+            </div>
           </form>
           <button>
             <img src={joinBtn} alt="loginBtn" onClick={onClickJoin} />

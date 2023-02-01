@@ -9,9 +9,11 @@ import axios from 'axios';
 import { useEffect } from 'react';
 
 import Letter from '../components/Letter';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const Mypage = () => {
+  const navigate = useNavigate();
+
   const user = useSelector((state) => state.user.user.data);
   const isLoggingIn = useSelector((state) => state.user.user.isLoggingIn);
   const [listIdx, setListIdx] = useState('send');
@@ -31,6 +33,7 @@ const Mypage = () => {
     }
   }, [listIdx]);
 
+  //onClick - 내가 보낸, 내가 받은
   const getSendLetters = () => {
     axios
       .post('http://localhost:8000/getSendLetters', {
@@ -68,6 +71,7 @@ const Mypage = () => {
     }
   };
 
+  //onClick - 회원 탈퇴
   const deleteAccount = () => {
     const confirm = window.confirm(
       '정말로 탈퇴하시겠습니까? 내가 받은 편지와 내가 보낸 편지 모두 사라지게 되며 복구가 불가능합니다.'
@@ -86,6 +90,11 @@ const Mypage = () => {
   };
   console.log(letters);
 
+  //onClick - 정보 수정
+  const onClickEdit = () => {
+    navigate('/editProfile');
+  };
+
   return (
     <>
       {isLoggingIn ? (
@@ -95,7 +104,7 @@ const Mypage = () => {
             <section className="userInfo">
               <h2>{user.user_nickname} 님</h2>
               <button onClick={deleteAccount}>회원탈퇴</button>
-              <button>정보수정</button>
+              <button onClick={onClickEdit}>정보수정</button>
             </section>
             <div className="btns">
               <button

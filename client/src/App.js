@@ -14,7 +14,7 @@ function App() {
 
   const userInfo = {
     user_id: sessionStorage.getItem('user_id'),
-    user_pw: sessionStorage.getItem('user_pw'),
+    // user_pw: sessionStorage.getItem('user_pw'),
     user_nickname: sessionStorage.getItem('user_nickname'),
   };
 
