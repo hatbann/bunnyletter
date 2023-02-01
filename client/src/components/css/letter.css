@@ -86,9 +86,29 @@
   }
   
 
-  .mypageBunny {
-    width: 200px;
-    height: 240px;
+}
+
+
+
+
+@media screen and (max-width:500px) {
+  .letterDivs>div span{
+    font-weight: 600;
+    font-size: 13px;
+    margin-bottom: 10px;
+    padding: 3px 10px;
+    border-radius: 70px;
   }
   
+  .letterDivs>div span:first-child{
+    background-color: white;
+    color: #44403F;
+    margin-right: 10px;
+  }
+  
+  .letterDivs>div span:last-child{
+    background-color:#44403F;
+    color: white;
+  }
+
 }
