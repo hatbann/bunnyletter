@@ -125,7 +125,11 @@ exports.deleteAccount = async (req, res) => {
   });
   console.log(result);
 
-  if (result) {
+  let receiverID = await Letter.destroy({
+    where: { receiver_id: req.body.user_id },
+  });
+
+  if (result && receiverID) {
     res.send('회원 탈퇴가 완료되었습니다.');
   }
 };
