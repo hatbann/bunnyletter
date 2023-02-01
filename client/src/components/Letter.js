@@ -21,10 +21,11 @@ const Letter = (data) => {
 
   return (
     <div>
-      <span>From. {senderNickname}</span>
-      <p>{letterContext}</p>
+      <div>
+        <span>From. {senderNickname}</span>
+        <span>To. {receiverNickname}</span>
+      </div>
       <img className="mypageBunny" src={imgBase64}></img>
-      <span>To. {receiverNickname}</span>
     </div>
   );
 };

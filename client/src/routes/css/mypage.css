@@ -1,5 +1,5 @@
 .mypage.section{
-
+  height: 100%;
     padding: 220px 0 0 0;
   }
 
@@ -21,11 +21,17 @@
   }
 
   .mypage .letters{
-    margin-left: 100px;
-    margin-top: 80px;
+    display: flex;
+    justify-content: center;
   }
 
-  .mypage .btns button{
+  .mypage>.btns{
+    margin-left: 100px;
+    margin-top: 50px;
+    margin-bottom: 70px;
+  }
+
+  .mypage>.btns button{
     border: none;
     background-color: white;
     border-radius: 70px;
@@ -33,7 +39,7 @@
     cursor: pointer;
   }
 
-  .mypage .btns button:first-child{
+  .mypage>.btns button:first-child{
     margin-right: 10px;
 
   }
