@@ -41,3 +41,21 @@
   }
   
 }
+
+.errorPage{
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.errorPage > img{
+  width: 350px;
+  margin-bottom: 50px;
+}
+
+.errorPage > h2{
+  font-weight: 600;
+  font-size: 20px;
+}
