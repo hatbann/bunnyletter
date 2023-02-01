@@ -1,4 +1,114 @@
 .mypageBunny {
-  width: 300px;
+  width: 250px;
   height: 300px;
+}
+
+
+.letterDivs{
+  width: 1170px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.letterDivs>div{
+  width: calc(1100px / 3 - 58px);
+  margin-right: 80px;
+  margin-bottom: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.letterDivs>div div{
+  margin-bottom: 20px;
+}
+
+
+
+.letterDivs>div span{
+  font-weight: 600;
+  font-size: 13px;
+  margin-bottom: 10px;
+  padding: 3px 10px;
+  border-radius: 70px;
+}
+
+.letterDivs>div span:first-child{
+  background-color: white;
+  color: #44403F;
+  margin-right: 10px;
+}
+
+.letterDivs>div span:last-child{
+  background-color:#44403F;
+  color: white;
+}
+
+@media screen and (max-width:1200px) {
+  .letterDivs{
+    width: 850px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .letterDivs>div{
+    margin-right: 115px;
+  }
+  
+}
+
+
+@media screen and (max-width:900px) {
+  .letterDivs{
+    width:620px;
+  }
+
+  .letterDivs>div{
+    margin-right: 0;
+  }
+  
+
+  .mypageBunny {
+    width: 200px;
+    height: 240px;
+  }
+  
+}
+
+
+@media screen and (max-width:630px) {
+  .letterDivs{
+    width: 50vw;
+  }
+
+  .letterDivs>div{
+    width: 50vw;
+  }
+  
+
+}
+
+
+
+
+@media screen and (max-width:500px) {
+  .letterDivs>div span{
+    font-weight: 600;
+    font-size: 13px;
+    margin-bottom: 10px;
+    padding: 3px 10px;
+    border-radius: 70px;
+  }
+  
+  .letterDivs>div span:first-child{
+    background-color: white;
+    color: #44403F;
+    margin-right: 10px;
+  }
+  
+  .letterDivs>div span:last-child{
+    background-color:#44403F;
+    color: white;
+  }
+
 }

@@ -106,34 +106,32 @@ const Mypage = () => {
               <button onClick={deleteAccount}>회원탈퇴</button>
               <button onClick={onClickEdit}>정보수정</button>
             </section>
+            <div className="btns">
+              <button
+                onClick={onClickBtn}
+                ref={sendBtnRef}
+                value="send"
+                className="active"
+              >
+                내가 보낸
+              </button>
+              <button onClick={onClickBtn} ref={receiveBtnRef} value="receive">
+                내가 받은
+              </button>
+            </div>
             <section className="letters">
-              <div className="btns">
-                <button
-                  onClick={onClickBtn}
-                  ref={sendBtnRef}
-                  value="send"
-                  className="active"
-                >
-                  내가 보낸
-                </button>
-                <button
-                  onClick={onClickBtn}
-                  ref={receiveBtnRef}
-                  value="receive"
-                >
-                  내가 받은
-                </button>
+              <div className="letterDivs">
+                {letters.map((letter) => (
+                  <Letter
+                    key={letter.id}
+                    imgUrl={letter.img_url}
+                    letterContext={letter.letter_context}
+                    receiverNickname={letter.receiver_nickname}
+                    senderNickname={letter.sender_nickname}
+                    base64={letter.img_base64}
+                  />
+                ))}
               </div>
-              {letters.map((letter) => (
-                <Letter
-                  key={letter.id}
-                  imgUrl={letter.img_url}
-                  letterContext={letter.letter_context}
-                  receiverNickname={letter.receiver_nickname}
-                  senderNickname={letter.sender_nickname}
-                  base64={letter.img_base64}
-                />
-              ))}
             </section>
           </div>
         </>

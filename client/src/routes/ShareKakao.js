@@ -39,9 +39,6 @@ const ShareKakao = () => {
       kakao.Link.createCustomButton({
         container: '#kakaotalk-sharing-btn',
         templateId: 88708,
-        templateArgs: {
-          img: 'https://i.pinimg.com/564x/4a/3f/07/4a3f07b8840c62b25bdfebb333133a48.jpg',
-        },
       });
     }
   }, [finishSend]);
