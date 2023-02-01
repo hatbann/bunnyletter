@@ -9,6 +9,7 @@ import axios from 'axios';
 import { useEffect } from 'react';
 
 import Letter from '../components/Letter';
+import { useLocation } from 'react-router-dom';
 
 const Mypage = () => {
   const user = useSelector((state) => state.user.user.data);
@@ -16,6 +17,7 @@ const Mypage = () => {
   const [listIdx, setListIdx] = useState('send');
   const [letters, setLetters] = useState([]);
 
+  console.log(user);
   //console.log(useSele ctor((state) => state.user));
 
   const sendBtnRef = useRef();
@@ -32,7 +34,7 @@ const Mypage = () => {
   const getSendLetters = () => {
     axios
       .post('http://localhost:8000/getSendLetters', {
-        userId: user.user_id,
+        sender_nickname: user.user_nickname,
       })
       .then((res) => {
         console.log(res.data);
@@ -42,9 +44,10 @@ const Mypage = () => {
   };
 
   const getReceiveLetters = () => {
+    console.log();
     axios
       .post('http://localhost:8000/getReceiveLetters', {
-        userId: user.user_id,
+        receiver_nickname: user.user_nickname,
       })
       .then((res) => {
         console.log(res.data);
@@ -117,8 +120,8 @@ const Mypage = () => {
                   key={letter.id}
                   imgUrl={letter.img_url}
                   letterContext={letter.letter_context}
-                  receiverId={letter.receiver_id}
-                  senderId={letter.sender_id}
+                  receiverNickname={letter.receiver_nickname}
+                  senderNickname={letter.sender_nickname}
                   base64={letter.img_base64}
                 />
               ))}

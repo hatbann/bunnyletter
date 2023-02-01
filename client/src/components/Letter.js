@@ -6,8 +6,10 @@ import bunny from '../images/Bunny.png';
 const Letter = (data) => {
   const [imgUrl, setImgURL] = useState(data.imgUrl);
   const [letterContext, setLetterContext] = useState(data.letterContext);
-  const [receiverId, setReceiverId] = useState(data.receiverId);
-  const [senderId, setSenderId] = useState(data.senderId);
+  const [receiverNickname, setReceiverNickname] = useState(
+    data.receiverNickname
+  );
+  const [senderNickname, setSenderNickname] = useState(data.senderNickname);
   const [imgBase64, setImgBase64] = useState(data.base64);
 
   // function toBase64(arr) {
@@ -19,10 +21,10 @@ const Letter = (data) => {
 
   return (
     <div>
-      <span>From. {senderId}</span>
+      <span>From. {senderNickname}</span>
       <p>{letterContext}</p>
       <img className="mypageBunny" src={imgBase64}></img>
-      <span>To. {receiverId}</span>
+      <span>To. {receiverNickname}</span>
     </div>
   );
 };

@@ -21,14 +21,15 @@ const MakeBunny = () => {
 
   const onClickSend = () => {
     let letterContext = textAreaRef.current.value;
-    if (letterContext === '' || letterContext === undefined) {
+    if (
+      letterContext === '' ||
+      letterContext === undefined ||
+      letterContext === null
+    ) {
       alert('편지 내용을 입력해주세요.');
     } else {
-      //편지 내용 세션 저장
-      sessionStorage.setItem('letter_context', letterContext);
-
+      console.log(receiver);
       const card = bunnyCardRef.current;
-
 
       domtoimage.toPng(card).then((dataUrl) => {
         var img = new Image();
@@ -36,7 +37,11 @@ const MakeBunny = () => {
         //console.log(img);
 
         navigate('/shareKakao', {
-          state: { blob: img.src, receiver: receiver },
+          state: {
+            blob: img.src,
+            receiver: receiver,
+            letterContext: textAreaRef.current.value,
+          },
         });
       });
 
@@ -46,7 +51,7 @@ const MakeBunny = () => {
       // });
       //});
 
-/*
+      /*
       let scale = 2;
       domtoimage
         .toBlob(card, {
@@ -63,7 +68,6 @@ const MakeBunny = () => {
           });
         });
         */
-
     }
   };
 
@@ -85,7 +89,7 @@ const MakeBunny = () => {
             </div>
           </form>
         </div>
-        <p>Dear. {receiver.user_id}</p>
+        <p>Dear. {receiver.user_nickname}</p>
         <button className="sendBtn" onClick={onClickSend}>
           Send
         </button>
