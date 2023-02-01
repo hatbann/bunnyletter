@@ -9,10 +9,13 @@ import bunny from '../images/Bunny.png';
 import { useNavigate } from 'react-router-dom';
 import user from '../store/module/user';
 import { useSelector } from 'react-redux';
+import { useState } from 'react';
+import { useEffect } from 'react';
 
 const MakeBunny = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const [textLen, setTextLen] = useState(0);
 
   let bunnyCardRef = useRef();
   let textAreaRef = useRef();
@@ -21,49 +24,80 @@ const MakeBunny = () => {
 
   const onClickSend = () => {
     let letterContext = textAreaRef.current.value;
-    if (letterContext === '' || letterContext === undefined) {
-      alert('편지 내용을 입력해주세요.');
-    } else {
-      //편지 내용 세션 저장
-      sessionStorage.setItem('letter_context', letterContext);
+    let checkLen = checkLength();
+    if (checkLen) {
+      if (letterContext === '' || letterContext === undefined) {
+        alert('편지 내용을 입력해주세요.');
+      } else {
+        //편지 내용 세션 저장
+        sessionStorage.setItem('letter_context', letterContext);
 
-      const card = bunnyCardRef.current;
+        const card = bunnyCardRef.current;
+        let scale = 2;
+        domtoimage
+          .toPng(card, {
+            width: card.clientWidth * scale,
+            height: card.clientHeight * scale,
+            style: {
+              transform: 'scale(' + scale + ')',
+              transformOrigin: 'top left',
+            },
+          })
+          .then((dataUrl) => {
+            var img = new Image();
+            img.src = dataUrl;
+            //console.log(img);
 
-
-      domtoimage.toPng(card).then((dataUrl) => {
-        var img = new Image();
-        img.src = dataUrl;
-        //console.log(img);
-
-        navigate('/shareKakao', {
-          state: { blob: img.src, receiver: receiver },
-        });
-      });
-
-      //domtoimage.toBlob(card).then((blob) => {
-      // navigate('/shareKakao', {
-      //   state: { blob: blob, receiver: receiver, img: image },
-      // });
-      //});
-
-/*
-      let scale = 2;
-      domtoimage
-        .toBlob(card, {
-          width: card.clientWidth * scale,
-          height: card.clientHeight * scale,
-          style: {
-            transform: 'scale(' + scale + ')',
-            transformOrigin: 'top left',
-          },
-        })
-        .then((blob) => {
-          navigate('/shareKakao', {
-            state: { blob: blob, receiver: receiver },
+            navigate('/shareKakao', {
+              state: { blob: img.src, receiver: receiver },
+            });
           });
-        });
-        */
 
+        //domtoimage.toBlob(card).then((blob) => {
+        // navigate('/shareKakao', {
+        //   state: { blob: blob, receiver: receiver, img: image },
+        // });
+        //});
+
+        /*
+        let scale = 2;
+        domtoimage
+          .toBlob(card, {
+            width: card.clientWidth * scale,
+            height: card.clientHeight * scale,
+            style: {
+              transform: 'scale(' + scale + ')',
+              transformOrigin: 'top left',
+            },
+          })
+          .then((blob) => {
+            navigate('/shareKakao', {
+              state: { blob: blob, receiver: receiver },
+            });
+          });
+          */
+      }
+    }
+  };
+
+  const checkLength = () => {
+    let text = textAreaRef.current.value;
+    let textLength = text.length;
+    console.log(textLength);
+    let maxLength = 200;
+    if (textLength > maxLength) {
+      alert(maxLength + '자 이상 작성할 수 없습니다');
+      text = text.substr(0, maxLength);
+      textAreaRef.current.focus();
+      return false;
+    }
+
+    return true;
+  };
+
+  const checkEnter = (e) => {
+    if (e.key === 'Enter') {
+      checkLength();
     }
   };
 
@@ -81,11 +115,16 @@ const MakeBunny = () => {
                 id="content"
                 cols="30"
                 rows="10"
+                onKeyUp={checkEnter}
+                onChange={() => {
+                  setTextLen(textAreaRef.current.value.length);
+                }}
               ></textarea>
             </div>
           </form>
         </div>
-        <p>Dear. {receiver.user_id}</p>
+        <p id="textLen">{textLen}/200</p>
+        <p id="Dear">Dear. {receiver.user_id}</p>
         <button className="sendBtn" onClick={onClickSend}>
           Send
         </button>
