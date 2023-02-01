@@ -140,13 +140,17 @@ exports.postSaveLetter = async (req, res) => {
   const receiver_id = req.body.receiverID;
   const img_url = req.body.imgURL;
   const letter_context = req.body.letter_context;
+  const sender_nickname = req.body.senderNickname;
+  const receiver_nickname = req.body.receiverNickname;
 
   const data = {
     sender_id: sender_id,
     receiver_id: receiver_id,
     img_url: img_url,
     letter_context: letter_context,
-    img_base64: img_url.blob,
+    img_base64: img_url,
+    sender_nickname: sender_nickname,
+    receiver_nickname: receiver_nickname,
   };
 
   const sameLetter = await Letter.findOne({
@@ -206,10 +210,11 @@ exports.postGetSendLetters = async (req, res) => {
   const mylistLetter = await Letter.findAll({
     raw: true,
     where: {
-      sender_id: req.body.userId,
+      sender_nickname: req.body.sender_nickname,
     },
   });
 
+  console.log(mylistLetter);
   res.send(mylistLetter);
 };
 
@@ -217,9 +222,9 @@ exports.postGetReceivedLetters = async (req, res) => {
   const mylistLetter = await Letter.findAll({
     raw: true,
     where: {
-      receiver_id: req.body.userId,
+      receiver_nickname: req.body.receiver_nickname,
     },
   });
-
+  console.log(mylistLetter);
   res.send(mylistLetter);
 };

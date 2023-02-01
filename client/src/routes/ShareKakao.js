@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import Nav from '../components/Nav';
 import './css/writeLetter.css';
 import bunny from '../images/Bunny.png';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 import { useState } from 'react';
@@ -11,16 +11,18 @@ import { useEffect } from 'react';
 import useDidMountEffect from '../components/useDidMountEffect';
 
 const ShareKakao = () => {
+  const navigate = useNavigate();
   const location = useLocation();
   const [finishSend, setFinishSend] = useState(false);
   const [imgId, setImgId] = useState(0);
 
-  const imgURL = location.state;
+  const imgURL = location.state.blob;
 
   //console.log(imgURL.blob);
   //const imgURL = window.URL.createObjectURL(bunnyCard)
 
   console.log('imgUrl', imgURL);
+
   useEffect(() => {
     console.log(imgId);
     // console.log(imgURL.blob);
@@ -50,7 +52,8 @@ const ShareKakao = () => {
   //sessionStorage.setItem('img_url', imgURL);
 
   const user = useSelector((state) => state.user.user.data);
-
+  const receiver = location.state.receiver;
+  console.log(receiver);
   //카카오톡 공유하기
   const onClickShare = () => {
     /*
@@ -70,11 +73,12 @@ const ShareKakao = () => {
         }
       });
   };
+
   //letter DB 저장
   const onClickSave = () => {
-    const receiverID = location.state.receiver.user_id;
+    const receiverID = receiver.user_id;
     const senderID = user.user_id;
-    const letterContext = sessionStorage.getItem('letter_context');
+    const letterContext = location.state.letterContext;
 
     axios
       .post('http://localhost:8000/saveletter', {
@@ -82,6 +86,8 @@ const ShareKakao = () => {
         receiverID: receiverID,
         senderID: senderID,
         letter_context: letterContext,
+        senderNickname: user.user_nickname,
+        receiverNickname: receiver.user_nickname,
       })
       .then((res) => {
         if (res.data.check === true) {
@@ -91,7 +97,6 @@ const ShareKakao = () => {
         } else {
           setFinishSend(true);
           setImgId(Number(res.data.imgId));
-
           alert(res.data.msg);
         }
       });
@@ -101,13 +106,18 @@ const ShareKakao = () => {
     <>
       <div className="section share">
         <Nav />
-        <img src={imgURL.blob} alt="" id="bunnyBlobImg" />
+        <img src={imgURL} alt="" id="bunnyBlobImg" />
         {finishSend ? (
-          <button onClick={onClickShare} id="kakaotalk-sharing-btn">
-            카카오톡 공유하기
-          </button>
+          <>
+            <button onClick={onClickShare} id="kakaotalk-sharing-btn">
+              카카오톡 공유하기
+            </button>
+          </>
         ) : (
-          <button onClick={onClickSave}>bunnyletter 전송하기</button>
+          <>
+            <p>Dear. {receiver.user_nickname}</p>
+            <button onClick={onClickSave}>bunnyletter 전송하기</button>
+          </>
         )}
       </div>
     </>

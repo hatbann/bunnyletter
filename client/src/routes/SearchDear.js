@@ -23,6 +23,8 @@ const SearchDear = () => {
       return false;
     }
 
+    console.log(searchResult);
+
     axios
       .post('http://localhost:8000/search', {
         searchNickName: searchNickNameRef.current.value,

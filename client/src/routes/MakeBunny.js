@@ -24,6 +24,8 @@ const MakeBunny = () => {
 
   const onClickSend = () => {
     let letterContext = textAreaRef.current.value;
+
+
     let checkLen = checkLength();
     if (checkLen) {
       if (letterContext === '' || letterContext === undefined) {
@@ -49,7 +51,7 @@ const MakeBunny = () => {
             //console.log(img);
 
             navigate('/shareKakao', {
-              state: { blob: img.src, receiver: receiver },
+              state: { blob: img.src, receiver: receiver, letterContext: textAreaRef.current.value},
             });
           });
 
@@ -80,6 +82,7 @@ const MakeBunny = () => {
     }
   };
 
+
   const checkLength = () => {
     let text = textAreaRef.current.value;
     let textLength = text.length;
@@ -91,7 +94,6 @@ const MakeBunny = () => {
       textAreaRef.current.focus();
       return false;
     }
-
     return true;
   };
 
@@ -123,8 +125,9 @@ const MakeBunny = () => {
             </div>
           </form>
         </div>
-        <p id="textLen">{textLen}/200</p>
-        <p id="Dear">Dear. {receiver.user_id}</p>
+<p id="textLen">{textLen}/200</p>
+        <p>Dear. {receiver.user_nickname}</p>
+
         <button className="sendBtn" onClick={onClickSend}>
           Send
         </button>
