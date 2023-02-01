@@ -7,7 +7,7 @@
 }
 
 .join.section h1 {
-  font-size: 64px;
+  font-size: 50px;
   margin-bottom: 87px;
   margin-top: 0;
   font-weight: 600;
@@ -21,10 +21,12 @@
 .loginForm form label {
   display: inline-block;
   margin-right: 56px;
-  font-size: 24px;
+  font-size: 20px;
   width: 90px;
   font-weight: 600;
 }
+
+
 
 .loginForm form div:not(:last-of-type) {
   margin-bottom: 25px;
@@ -45,5 +47,44 @@
 }
 
 .loginForm button img {
+  width: 100px;
+}
+
+
+/*Join*/
+.joinForm {
+  display: flex;
+  align-items: center;
+}
+
+.joinForm form label {
+  display: inline-block;
+  margin-right: 56px;
+  font-size: 17px;
+  width: 90px;
+  font-weight: 600;
+}
+
+
+
+.joinForm form div:not(:last-of-type) {
+  margin-bottom: 25px;
+}
+
+.joinForm form input {
+  width: 310px;
+  height: 42px;
+  border: none;
+  border-radius: 70px;
+}
+
+.joinForm button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  margin-left: 30px;
+}
+
+.joinForm button img {
   width: 100px;
 }

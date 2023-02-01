@@ -24,3 +24,20 @@
   color: #44403f;
   cursor: pointer;
 }
+
+
+@media screen and (max-width:800px){
+  #letterImg {
+    width: 50vw;
+    margin-top: 150px;
+  }
+  
+}
+
+@media screen and (max-width:500px){
+  #letterImg {
+    width: 300px;
+    margin-top: 150px;
+  }
+  
+}

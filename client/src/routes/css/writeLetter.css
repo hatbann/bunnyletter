@@ -1,3 +1,10 @@
+@font-face {
+  font-family: 'Cafe24Ssurround';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 .section {
   background-color: #f8c3cc;
 }
@@ -119,13 +126,15 @@
 }
 
 .contentForm form textarea {
+  font-family: Cafe24Ssurround;
   width: 260px;
   height: 150px;
-  font-size: 10px;
+  font-size: 13px;
   border: none;
   resize: none;
   border-radius: 10px;
   padding: 10px;
+
 }
 
 .contentForm form textarea:focus {
@@ -134,6 +143,15 @@
 
 .write.section > p {
   margin-top: 20px;
+}
+
+#textLen{
+  font-size: 13px;
+}
+
+#Dear{
+  
+  font-weight: 600;
 }
 
 .sendBtn {
@@ -175,4 +193,76 @@
 .section.share > button:hover {
   background-color: rgb(32, 32, 32);
   color: #f8c3cc;
+}
+
+
+
+
+@media screen and (max-width:500px){
+  .search.section h1 {
+    font-size: 50px;
+    margin-bottom: 50px;
+  }
+
+  .searchForm{
+    flex-direction: column;
+  }
+
+  .searchForm form input {
+    width: 250px;
+    height: 42px;
+    border: none;
+    border-radius: 70px;
+  }
+  
+  .searchForm button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    margin-left: 0px;
+    margin-top: 20px;
+  }
+  
+  .searchForm button img {
+    width: 50px;
+  }
+  
+  .searchForm form p {
+    font-size: 13px;
+  }
+  
+  .searchResult {
+    margin-top: 40px;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .searchResult h2 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 15px;
+  }
+  
+  .searchResult div {
+    margin-bottom: 7px;
+  }
+  
+  .searchResult button {
+    margin-top: 20px;
+    border: none;
+    padding: 5px 20px;
+    border-radius: 70px;
+    font-weight: 600;
+    background-color: white;
+    color: rgb(32, 32, 32);
+    cursor: pointer;
+  }
+  
+  .searchResult button:hover {
+    background-color: rgb(32, 32, 32);
+    color: #f8c3cc;
+  }
+  
+  
 }

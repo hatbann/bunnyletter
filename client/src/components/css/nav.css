@@ -35,3 +35,13 @@
   color: #282c34;
   cursor: pointer;
 }
+
+
+
+@media screen and (max-width:500px){
+  .nav {
+    width: 80vw;
+    padding: 30px;
+  }
+  
+}
