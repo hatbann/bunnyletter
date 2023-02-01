@@ -81,7 +81,7 @@ const Join = () => {
       <Nav />
       <div className="join section">
         <h1>Join</h1>
-        <div className="loginForm">
+        <div className="joinForm">
           <form action="">
             <div>
               <label htmlFor="userId">ID</label>
