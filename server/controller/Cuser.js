@@ -165,7 +165,7 @@ exports.postSaveLetter = async (req, res) => {
   if (!sameLetter) {
     await Letter.create(data)
       .then((result) => {
-        console.log(result.dataValues);
+        //console.log(result.dataValues);
         if (result) {
           res.send({
             check: true,
@@ -205,7 +205,7 @@ exports.postGetImg = async (req, res) => {
   });
 };
 
-//MYPAGE
+//MYPAGE - 내가 보낸 편지 정보 가져오기
 exports.postGetSendLetters = async (req, res) => {
   const mylistLetter = await Letter.findAll({
     raw: true,
@@ -218,6 +218,7 @@ exports.postGetSendLetters = async (req, res) => {
   res.send(mylistLetter);
 };
 
+//MYPAGE - 내가 받은 편지 정보 가져오기
 exports.postGetReceivedLetters = async (req, res) => {
   const mylistLetter = await Letter.findAll({
     raw: true,
@@ -227,4 +228,35 @@ exports.postGetReceivedLetters = async (req, res) => {
   });
   console.log(mylistLetter);
   res.send(mylistLetter);
+};
+
+//MYPAGE/EDIT - 비밀번호 수정하기
+
+exports.fetchProfile = async (req, res) => {
+  const userID = req.body.user_id;
+  const userNickname = req.body.user_nickname;
+  const newPassword = req.body.user_pw;
+
+  const hashedPassword = await bcrypt.hash(newPassword, 12);
+
+  let data = {
+    user_id: userID,
+    user_pw: hashedPassword,
+    user_nickname: userNickname,
+  };
+
+  let updateResult = await User.update(data, {
+    raw: true,
+    where: { user_id: userID },
+  });
+
+  // let findUpdateResult = await User.findOne(data, {
+  //   raw: true,
+  //   where: { user_id: userID },
+  // });
+
+  if (updateResult) {
+    console.log('*******************', updateResult);
+    res.send(true);
+  } else res.send(false);
 };

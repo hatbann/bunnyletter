@@ -10,6 +10,7 @@ import Mypage from './Mypage';
 import SearchDear from './SearchDear';
 import SendingAni from './SendingAni';
 import ShareKakao from './ShareKakao';
+import MypageEdit from './MypageEdit';
 
 const AppRouter = () => {
   const user = useContext(UserContext);
@@ -25,6 +26,7 @@ const AppRouter = () => {
         <Route path="/searchDear" element={<SearchDear />} />
         <Route path="/sending..." element={<SendingAni />} />
         <Route path="/shareKakao" element={<ShareKakao />} />
+        <Route path="/editProfile" element={<MypageEdit />} />
       </Routes>
     </BrowserRouter>
   );

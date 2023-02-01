@@ -26,8 +26,6 @@
   font-weight: 600;
 }
 
-
-
 .loginForm form div:not(:last-of-type) {
   margin-bottom: 25px;
 }
@@ -50,7 +48,6 @@
   width: 100px;
 }
 
-
 /*Join*/
 .joinForm {
   display: flex;
@@ -64,8 +61,6 @@
   width: 90px;
   font-weight: 600;
 }
-
-
 
 .joinForm form div:not(:last-of-type) {
   margin-bottom: 25px;
@@ -87,4 +82,13 @@
 
 .joinForm button img {
   width: 100px;
+}
+
+.passwordContent {
+  font-weight: bold;
+}
+
+.loginLink {
+  margin-top: 30px;
+  text-decoration: underline;
 }

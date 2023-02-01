@@ -1,0 +1,71 @@
+.edit.section {
+  background-color: #f8c3cc;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.edit.section h1 {
+  font-size: 50px;
+  margin-bottom: 87px;
+  margin-top: 0;
+  font-weight: 600;
+}
+
+.editForm {
+  display: flex;
+  align-items: center;
+}
+
+.editForm form label {
+  display: inline-block;
+  margin-right: 56px;
+  font-size: 20px;
+  width: 90px;
+  font-weight: 600;
+}
+
+.editForm form div:not(:last-of-type) {
+  margin-bottom: 25px;
+}
+
+.editForm form input {
+  width: 310px;
+  height: 42px;
+  border: none;
+  border-radius: 70px;
+}
+
+.editForm button {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: none;
+  padding: 5px 20px;
+  border-radius: 70px;
+  font-weight: 600;
+  background-color: white;
+  color: rgb(32, 32, 32);
+  cursor: pointer;
+}
+
+.editForm button:hover {
+  background-color: rgb(32, 32, 32);
+  color: #f8c3cc;
+}
+
+.backToMypage {
+  margin-top: 20px;
+  border: none;
+  padding: 5px 20px;
+  border-radius: 70px;
+  font-weight: 600;
+  background-color: white;
+  color: rgb(32, 32, 32);
+  cursor: pointer;
+}
+
+.backToMypage:hover {
+  background-color: rgb(32, 32, 32);
+  color: #f8c3cc;
+}

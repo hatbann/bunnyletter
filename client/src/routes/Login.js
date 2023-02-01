@@ -35,7 +35,7 @@ const Login = () => {
         if (res.data.check == true) {
           alert(res.data.msg);
           sessionStorage.setItem('user_id', res.data.userInfo.user_id);
-          sessionStorage.setItem('user_pw', res.data.userInfo.user_pw);
+          //sessionStorage.setItem('user_pw', res.data.userInfo.user_pw);
           sessionStorage.setItem(
             'user_nickname',
             res.data.userInfo.user_nickname

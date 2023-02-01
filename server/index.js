@@ -15,8 +15,8 @@ let corsOptions = {
   credential: true, // 사용자 인증이 필요한 리소스(쿠키 ..등) 접근
 };
 
-app.use(express.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.json({ limit: '100mb' }));
+app.use(bodyParser.urlencoded({ limit: '100mb', extended: false }));
 app.use(bodyParser.json());
 app.use(cors(corsOptions));
 
@@ -42,7 +42,13 @@ app.post('/getLetterImg', Cuser.postGetImg);
 app.post('/getSendLetters', Cuser.postGetSendLetters);
 app.post('/getReceiveLetters', Cuser.postGetReceivedLetters);
 
+app.put('/editProfile', Cuser.fetchProfile);
+
 app.delete('/deleteUser', Cuser.deleteAccount);
+
+app.use(function (error, req, res, next) {
+  res.render('500');
+});
 
 const PORT = process.env.PORT || 8000;
 
