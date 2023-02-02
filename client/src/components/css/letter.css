@@ -124,4 +124,15 @@
     color: white;
   }
 
+
+  .letterDivs>div div{
+    width: 60vw;
+    display: flex;
+    justify-content: center;
+      }
+
+  .letterDivs>div div span{
+       display: block;
+       padding: 10px 10px;
+  }
 }

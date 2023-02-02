@@ -19,17 +19,16 @@ const ShareKakao = () => {
   const [imgId, setImgId] = useState(0);
 
   const imgURL = location.state.blob;
-
-  //console.log(imgURL.blob);
+  console.log(location.state.blob.slice(22));
   //const imgURL = window.URL.createObjectURL(bunnyCard)
 
+  let imgURLBlob = location.state.blob.slice(22);
   //console.log('imgUrl', imgURL);
+  while (imgURLBlob.length % 4 > 0) {
+    imgURLBlob += '=';
+  }
 
-  useEffect(() => {
-    console.log(imgId);
-    // console.log(imgURL.blob);
-  }, [imgId]);
-
+  console.log(imgURLBlob);
   useDidMountEffect(() => {
     if (window.Kakao) {
       console.log(finishSend);
