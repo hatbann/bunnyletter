@@ -63,5 +63,9 @@ code {
 
 
 #root{
-background-color: #f8c3cc;;
+background-color: #f8c3cc;
+}
+
+body{
+	background-color: #f8c3cc;
 }

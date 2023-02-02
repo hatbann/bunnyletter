@@ -72,10 +72,12 @@
 @media screen and (max-width:900px) {
   .letterDivs{
     width:620px;
+    
   }
 
   .letterDivs>div{
     margin-right: 0;
+    margin-bottom: 70px;
   }
   
 
