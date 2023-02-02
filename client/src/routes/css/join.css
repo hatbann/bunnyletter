@@ -50,12 +50,18 @@
 }
 
 .passwordContent {
+  margin-top: 20px;
   font-weight: bold;
 }
 
 .loginLink {
   margin-top: 30px;
   text-decoration: underline;
+}
+
+.join-info {
+  font-size: 15px;
+  font-weight: 200;
 }
 
 @media screen and (max-width: 700px) {
@@ -84,15 +90,20 @@
   .joinForm button img {
     width: 60px;
   }
+
+  .join-info {
+    font-size: 13px;
+    font-weight: 200;
+  }
 }
 
 @media screen and (max-width: 500px) {
   .joinForm form div input {
     width: 250px;
   }
-}
 
-.join-info {
-  font-size: 15px;
-  font-weight: 200;
+  .join-info {
+    font-size: 13px;
+    font-weight: 200;
+  }
 }
