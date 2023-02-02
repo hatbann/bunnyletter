@@ -42,6 +42,7 @@ app.post('/getSendLetters', Cuser.postGetSendLetters);
 app.post('/getReceiveLetters', Cuser.postGetReceivedLetters);
 
 app.put('/editProfile', Cuser.fetchProfile);
+app.put('/deleteLetter', Cuser.deleteLetter);
 
 app.delete('/deleteUser', Cuser.deleteAccount);
 

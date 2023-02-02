@@ -47,6 +47,7 @@ const Letter = (data) => {
       </div>
       <img className="mypageBunny" src={imgBase64}></img>
       <button onClick={onClickHide}>숨김</button>
+
     </div>
   );
 };

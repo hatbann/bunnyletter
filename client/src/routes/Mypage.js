@@ -122,7 +122,9 @@ const Mypage = () => {
             <section className="letters">
               <div className="letterDivs">
                 {letters.map((letter) => (
+
                   <Letter key={letter.id} data={letter} />
+
                 ))}
               </div>
             </section>
