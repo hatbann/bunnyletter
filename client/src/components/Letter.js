@@ -16,8 +16,6 @@ const Letter = (data) => {
   const [imgBase64, setImgBase64] = useState(data.data.img_base64);
   const user = useSelector((state) => state.user.user.data);
 
-  console.log(data.data);
-  console.log(data.data.sender_visible);
   const onClickHide = () => {
     let hide = window.confirm(
       '정말로 숨기시겠습니까? 숨기신 목록은 복구할 수 없습니다'
@@ -34,6 +32,7 @@ const Letter = (data) => {
           .then((res) => {
             if (res.data) {
               alert('내가 보낸 편지를 성공적으로 숨겼습니다.');
+              data.hideFunc();
             } else alert('다시 한번 시도해주세요.');
           });
       } //받은 목록 가리기
@@ -46,6 +45,7 @@ const Letter = (data) => {
           .then((res) => {
             if (res.data) {
               alert('내가 받은 편지를  성공적으로 숨겼습니다.');
+              data.hideFunc();
             } else alert('다시 한번 시도해주세요.');
           });
       }
