@@ -13,7 +13,6 @@
   font-weight: 600;
 }
 
-
 /*Join*/
 .joinForm {
   display: flex;
@@ -59,40 +58,41 @@
   text-decoration: underline;
 }
 
-
-@media screen and (max-width: 700px){
+@media screen and (max-width: 700px) {
   .join.section h1 {
     font-size: 50px;
   }
 
-.joinForm {
-  width: 80vw;
-  flex-direction: column;
+  .joinForm {
+    width: 80vw;
+    flex-direction: column;
+  }
+
+  .joinForm form div {
+    display: flex;
+  }
+
+  .joinForm form div label {
+    margin-right: 10px;
+  }
+
+  .joinForm button {
+    margin-left: 0;
+    margin-top: 40px;
+  }
+
+  .joinForm button img {
+    width: 60px;
+  }
 }
 
-.joinForm form div{
-  display: flex;
+@media screen and (max-width: 500px) {
+  .joinForm form div input {
+    width: 250px;
+  }
 }
 
-.joinForm form div label{
-  margin-right: 10px;
-}
-
-.joinForm button {
-  margin-left: 0;
-  margin-top: 40px;
-}
-
-.joinForm button img{
-  width: 60px;
-}
-}
-
-@media screen and (max-width: 500px){
-
-
-.joinForm form div input{
-  width: 250px;
-}
-
+.join-info {
+  font-size: 15px;
+  font-weight: 200;
 }

@@ -114,6 +114,9 @@ const Join = () => {
                 ref={nickNameRef}
               />
             </div>
+            <p className="join-info">
+              ✔ ID, 닉네임은 가입 후 변경이 불가하니 신중하게 입력해 주세요.
+            </p>
             <p className="passwordContent" ref={pwContentRef}></p>
             <div>
               <Link className="loginLink" to="/login">
