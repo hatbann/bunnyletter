@@ -1,31 +1,52 @@
 import React from 'react';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import './css/letter.css';
 import bunny from '../images/Bunny.png';
+import axios from 'axios';
 
 const Letter = (data) => {
-  const [imgUrl, setImgURL] = useState(data.imgUrl);
-  const [letterContext, setLetterContext] = useState(data.letterContext);
   const [receiverNickname, setReceiverNickname] = useState(
-    data.receiverNickname
+    data.data.receiver_nickname
   );
-  const [senderNickname, setSenderNickname] = useState(data.senderNickname);
-  const [imgBase64, setImgBase64] = useState(data.base64);
+  const [date, setDate] = useState(data.data.date);
+  const [senderNickname, setSenderNickname] = useState(
+    data.data.sender_nickname
+  );
+  const [imgBase64, setImgBase64] = useState(data.data.img_base64);
+  const user = useSelector((state) => state.user.user.data);
 
-  // function toBase64(arr) {
-  //   //arr = new Uint8Array(arr) if it's an ArrayBuffer
-  //   return btoa(
-  //     arr.reduce((data, byte) => data + String.fromCharCode(byte), '')
-  //   );
-  // }
+  console.log(data.data);
+
+  const onClickHide = () => {
+    let hide = window.confirm(
+      '정말로 숨기시겠습니까? 숨기신 목록은 복구할 수 없습니다'
+    );
+
+    if (hide) {
+      //보낸목록 가리기
+      if (user.user_nickname === senderNickname) {
+        axios.post('', {
+          user_nickname: user.user_nickname,
+        });
+      } //받은 목록 가리기
+      else if (user.user_nickname === receiverNickname) {
+        axios.post('', {
+          user_nickname: user.user_nickname,
+        });
+      }
+    }
+  };
 
   return (
     <div>
+      <p>{date}</p>
       <div>
         <span>From. {senderNickname}</span>
         <span>To. {receiverNickname}</span>
       </div>
       <img className="mypageBunny" src={imgBase64}></img>
+      <button onClick={onClickHide}>숨김</button>
     </div>
   );
 };
