@@ -61,7 +61,7 @@ const ShareKakao = () => {
 
     console.log(imgId);
     axios
-      .post('http://localhost:8000/getLetterImg', {
+      .post('http://27.96.130.247:3000/getLetterImg', {
         imgId: imgId,
       })
       .then(async (res) => {
@@ -81,7 +81,7 @@ const ShareKakao = () => {
     console.log(momentDate);
 
     axios
-      .post('http://localhost:8000/saveletter', {
+      .post('http://27.96.130.247:3000/saveletter', {
         imgURL: imgURL,
         receiverID: receiverID,
         senderID: senderID,

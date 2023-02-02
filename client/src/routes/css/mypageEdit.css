@@ -16,6 +16,7 @@
 .editForm {
   display: flex;
   align-items: center;
+  flex-direction: column;
 }
 
 .editForm form label {
@@ -37,16 +38,28 @@
   border-radius: 70px;
 }
 
+.editForm>.btns{
+  display: flex;
+  align-items: center;
+}
+
+.editForm>.btns a{
+  font-size: 15px;
+  font-weight: 600;
+}
+
 .editForm button {
   margin-top: 20px;
   margin-bottom: 20px;
+  font-size: 15px;
   border: none;
-  padding: 5px 20px;
+  padding: 10px 25px;
   border-radius: 70px;
   font-weight: 600;
   background-color: white;
   color: rgb(32, 32, 32);
   cursor: pointer;
+  margin-right: 15px;
 }
 
 .editForm button:hover {
@@ -57,7 +70,7 @@
 .backToMypage {
   margin-top: 20px;
   border: none;
-  padding: 5px 20px;
+  padding: 10px 25px;
   border-radius: 70px;
   font-weight: 600;
   background-color: white;

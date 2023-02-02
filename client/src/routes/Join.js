@@ -59,7 +59,7 @@ const Join = () => {
     } else {
       pwContentRef.current.innerText = '비밀번호가 일치합니다.';
       axios
-        .post('http://localhost:8000/join', {
+        .post('http://27.96.130.247:3000/join', {
           id: idRef.current.value,
           pw: pwRef.current.value,
           nickName: nickNameRef.current.value,
