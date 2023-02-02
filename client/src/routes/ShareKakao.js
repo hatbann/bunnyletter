@@ -77,7 +77,7 @@ const ShareKakao = () => {
     const receiverID = receiver.user_id;
     const senderID = user.user_id;
     const letterContext = location.state.letterContext;
-    let momentDate = moment().format('MMMM Do YYYY, h:mm a');
+    let momentDate = moment().format('MMMM Do YYYY');
     console.log(momentDate);
 
     axios
