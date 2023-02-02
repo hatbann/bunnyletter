@@ -142,6 +142,7 @@ exports.postSaveLetter = async (req, res) => {
   const letter_context = req.body.letter_context;
   const sender_nickname = req.body.senderNickname;
   const receiver_nickname = req.body.receiverNickname;
+  const date = req.body.date;
 
   const data = {
     sender_id: sender_id,
@@ -151,6 +152,7 @@ exports.postSaveLetter = async (req, res) => {
     img_base64: img_url,
     sender_nickname: sender_nickname,
     receiver_nickname: receiver_nickname,
+    date: date,
   };
 
   const sameLetter = await Letter.findOne({

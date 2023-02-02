@@ -27,7 +27,7 @@ const Letter = (Sequelize, DataTypes) => {
       },
       img_base64: {
         type: DataTypes.TEXT('long'),
-        allowNull: true,
+        allowNull: false,
       },
       sender_nickname: {
         type: DataTypes.STRING(45),
@@ -36,6 +36,10 @@ const Letter = (Sequelize, DataTypes) => {
       receiver_nickname: {
         type: DataTypes.STRING(45),
         allowNull: false,
+      },
+      date: {
+        type: DataTypes.STRING(45),
+        allowNull: true,
       },
     },
     {

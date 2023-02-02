@@ -9,6 +9,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 
 import useDidMountEffect from '../components/useDidMountEffect';
+import moment from 'moment';
 
 const ShareKakao = () => {
   const navigate = useNavigate();
@@ -76,6 +77,8 @@ const ShareKakao = () => {
     const receiverID = receiver.user_id;
     const senderID = user.user_id;
     const letterContext = location.state.letterContext;
+    let momentDate = moment().format('MMMM Do YYYY, h:mm a');
+    console.log(momentDate);
 
     axios
       .post('http://localhost:8000/saveletter', {
@@ -85,6 +88,7 @@ const ShareKakao = () => {
         letter_context: letterContext,
         senderNickname: user.user_nickname,
         receiverNickname: receiver.user_nickname,
+        date: momentDate,
       })
       .then((res) => {
         if (res.data.check === true) {
