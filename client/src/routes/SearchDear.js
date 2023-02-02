@@ -26,7 +26,7 @@ const SearchDear = () => {
     console.log(searchResult);
 
     axios
-      .post('http://27.96.130.247:3000/search', {
+      .post('http://27.96.130.247:4000/search', {
         searchNickName: searchNickNameRef.current.value,
       })
       .then((res) => {

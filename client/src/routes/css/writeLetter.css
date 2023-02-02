@@ -1,6 +1,7 @@
 @font-face {
   font-family: 'Cafe24Ssurround';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff')
+    format('woff');
   font-weight: normal;
   font-style: normal;
 }
@@ -18,7 +19,7 @@
   height: 100vh;
 }
 
-.search.section{
+.search.section {
   background-color: #f8c3cc;
   display: flex;
   flex-direction: column;
@@ -102,10 +103,9 @@
 }
 
 /*편지 적는 부분*/
-.write.section{
+.write.section {
   padding-top: 70px;
 }
-
 
 .contentForm {
   display: flex;
@@ -121,7 +121,7 @@
   margin-top: 24px;
 }
 
-.contentForm img{
+.contentForm img {
   width: 360px;
 }
 
@@ -134,7 +134,6 @@
   resize: none;
   border-radius: 10px;
   padding: 10px;
-
 }
 
 .contentForm form textarea:focus {
@@ -145,12 +144,11 @@
   margin-top: 20px;
 }
 
-#textLen{
+#textLen {
   font-size: 13px;
 }
 
-#Dear{
-  
+#Dear {
   font-weight: 600;
 }
 
@@ -170,7 +168,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100%;
 }
 
 #bunnyBlobImg {
@@ -196,16 +193,13 @@
   color: #f8c3cc;
 }
 
-
-
-
-@media screen and (max-width:500px){
+@media screen and (max-width: 500px) {
   .search.section h1 {
     font-size: 50px;
     margin-bottom: 50px;
   }
 
-  .searchForm{
+  .searchForm {
     flex-direction: column;
   }
 
@@ -215,7 +209,7 @@
     border: none;
     border-radius: 70px;
   }
-  
+
   .searchForm button {
     background-color: transparent;
     border: none;
@@ -223,15 +217,15 @@
     margin-left: 0px;
     margin-top: 20px;
   }
-  
+
   .searchForm button img {
     width: 50px;
   }
-  
+
   .searchForm form p {
     font-size: 13px;
   }
-  
+
   .searchResult {
     margin-top: 40px;
     width: 200px;
@@ -244,11 +238,11 @@
     font-weight: 600;
     margin-bottom: 15px;
   }
-  
+
   .searchResult div {
     margin-bottom: 7px;
   }
-  
+
   .searchResult button {
     margin-top: 20px;
     border: none;
@@ -259,11 +253,9 @@
     color: rgb(32, 32, 32);
     cursor: pointer;
   }
-  
+
   .searchResult button:hover {
     background-color: rgb(32, 32, 32);
     color: #f8c3cc;
   }
-  
-  
 }
