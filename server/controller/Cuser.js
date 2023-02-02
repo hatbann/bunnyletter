@@ -262,3 +262,6 @@ exports.fetchProfile = async (req, res) => {
     res.send(true);
   } else res.send(false);
 };
+
+//MYPAGE - 편지 PUT(visible 속성을 ='0'으로 변경)
+exports.deleteLetter = async (req, res) => {};

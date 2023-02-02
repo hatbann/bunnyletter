@@ -129,6 +129,9 @@ const Mypage = () => {
                     receiverNickname={letter.receiver_nickname}
                     senderNickname={letter.sender_nickname}
                     base64={letter.img_base64}
+                    date={letter.date}
+                    sender_visible={letter.sender_visible}
+                    receiver_visible={letter.receiver_visible}
                   />
                 ))}
               </div>
