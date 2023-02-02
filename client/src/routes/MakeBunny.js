@@ -44,7 +44,6 @@ const MakeBunny = () => {
               receiver: receiver,
               letterContext: textAreaRef.current.value,
             },
-
           });
         });
 
@@ -71,9 +70,6 @@ const MakeBunny = () => {
             });
           });
           */
-
-          });
-        });
       }
     }
   };
