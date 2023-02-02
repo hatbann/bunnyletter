@@ -44,12 +44,12 @@ const Letter = (Sequelize, DataTypes) => {
       sender_visible: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
-        defaultValue: '1',
+        defaultValue: 1,
       },
       receiver_visible: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
-        defaultValue: '1',
+        defaultValue: 1,
       },
     },
     {

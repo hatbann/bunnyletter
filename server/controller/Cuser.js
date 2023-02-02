@@ -263,5 +263,50 @@ exports.fetchProfile = async (req, res) => {
   } else res.send(false);
 };
 
-//MYPAGE - 편지 PUT(visible 속성을 ='0'으로 변경)
-exports.deleteLetter = async (req, res) => {};
+//MYPAGE - 편지 PUT
+//1. 보낸 편지 - visible 속성을 ='0'으로 변경
+exports.hideSentLetter = async (req, res) => {
+  const userID = req.body.user_id;
+  const letterContext = req.body.letter_context;
+
+  let data = {
+    sender_visible: 0,
+  };
+
+  let updateVisibleResult = await Letter.update(data, {
+    raw: true,
+    where: {
+      sender_id: userID,
+      letter_context: letterContext,
+    },
+  });
+
+  console.log(updateVisibleResult);
+  if (updateVisibleResult) {
+    console.log(updateVisibleResult);
+    res.send(true);
+  } else res.send(false);
+};
+
+//2. 받은 편지 - visible 속성을 ='0'으로 변경
+exports.hideReceivedLetter = async (req, res) => {
+  const userID = req.body.user_id;
+  const letterContext = req.body.letter_context;
+
+  let data = {
+    receiver_visible: 0,
+  };
+
+  let updateVisibleResult = await Letter.update(data, {
+    raw: true,
+    where: {
+      receiver_id: userID,
+      letter_context: letterContext,
+    },
+  });
+
+  if (('*******************', updateVisibleResult)) {
+    console.log(updateVisibleResult);
+    res.send(true);
+  } else res.send(false);
+};
