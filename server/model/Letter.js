@@ -39,7 +39,17 @@ const Letter = (Sequelize, DataTypes) => {
       },
       date: {
         type: DataTypes.STRING(45),
-        allowNull: true,
+        allowNull: false,
+      },
+      sender_visible: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: '1',
+      },
+      receiver_visible: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: '1',
       },
     },
     {
