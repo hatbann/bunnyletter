@@ -41,8 +41,15 @@ const Mypage = () => {
       })
       .then((res) => {
         console.log(res.data);
-        let letters = res.data;
-        setLetters(letters);
+        let letterIdx = res.data;
+        setLetters([]);
+        letterIdx.map((letterIdx) => {
+          if (letterIdx.sender_visible === 1) {
+            setLetters((letter) => {
+              return [...letter, letterIdx];
+            });
+          }
+        });
       });
   };
 
@@ -54,7 +61,15 @@ const Mypage = () => {
       })
       .then((res) => {
         console.log(res.data);
-        setLetters(res.data);
+        let letterIdx = res.data;
+        setLetters([]);
+        letterIdx.map((letterIdx) => {
+          if (letterIdx.receiver_visible === 1) {
+            setLetters((letter) => {
+              return [...letter, letterIdx];
+            });
+          }
+        });
       });
   };
 
@@ -121,9 +136,25 @@ const Mypage = () => {
             </div>
             <section className="letters">
               <div className="letterDivs">
-                {letters.map((letter) => (
-                  <Letter key={letter.id} data={letter} />
-                ))}
+                {letters.map((letter) => {
+                  if (listIdx === 'send') {
+                    return (
+                      <Letter
+                        key={letter.id}
+                        data={letter}
+                        hideFunc={getSendLetters}
+                      />
+                    );
+                  } else {
+                    return (
+                      <Letter
+                        key={letter.id}
+                        data={letter}
+                        hideFunc={getReceiveLetters}
+                      />
+                    );
+                  }
+                })}
               </div>
             </section>
           </div>
