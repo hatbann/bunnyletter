@@ -25,7 +25,6 @@ const MakeBunny = () => {
   const onClickSend = () => {
     let letterContext = textAreaRef.current.value;
 
-
     let checkLen = checkLength();
     if (checkLen) {
       if (letterContext === '' || letterContext === undefined) {
@@ -51,37 +50,16 @@ const MakeBunny = () => {
             //console.log(img);
 
             navigate('/shareKakao', {
-              state: { blob: img.src, receiver: receiver, letterContext: textAreaRef.current.value},
+              state: {
+                blob: img.src,
+                receiver: receiver,
+                letterContext: textAreaRef.current.value,
+              },
             });
           });
-
-        //domtoimage.toBlob(card).then((blob) => {
-        // navigate('/shareKakao', {
-        //   state: { blob: blob, receiver: receiver, img: image },
-        // });
-        //});
-
-        /*
-        let scale = 2;
-        domtoimage
-          .toBlob(card, {
-            width: card.clientWidth * scale,
-            height: card.clientHeight * scale,
-            style: {
-              transform: 'scale(' + scale + ')',
-              transformOrigin: 'top left',
-            },
-          })
-          .then((blob) => {
-            navigate('/shareKakao', {
-              state: { blob: blob, receiver: receiver },
-            });
-          });
-          */
       }
     }
   };
-
 
   const checkLength = () => {
     let text = textAreaRef.current.value;
@@ -125,7 +103,7 @@ const MakeBunny = () => {
             </div>
           </form>
         </div>
-<p id="textLen">{textLen}/200</p>
+        <p id="textLen">{textLen}/200</p>
         <p>Dear. {receiver.user_nickname}</p>
 
         <button className="sendBtn" onClick={onClickSend}>

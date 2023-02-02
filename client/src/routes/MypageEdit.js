@@ -105,7 +105,7 @@ const MypageEdit = (e) => {
                   />
                 </div>
                 <div>
-                  <label htmlFor="userPwCheck">PW Check</label>
+                  <label htmlFor="userPwCheck">New PW Check</label>
                   <input
                     type="password"
                     name="userPwCheck"
@@ -114,11 +114,13 @@ const MypageEdit = (e) => {
                   />
                 </div>
               </form>
-              <button onClick={onClickEditPW}>Edit</button>
-              <div>
-                <Link className="backToMypage" to="/mypage">
-                  돌아가기
-                </Link>
+              <div className="btns">
+                <button onClick={onClickEditPW}>Edit</button>
+                <div>
+                  <Link className="backToMypage" to="/mypage">
+                    돌아가기
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
