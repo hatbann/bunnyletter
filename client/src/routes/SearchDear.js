@@ -33,7 +33,7 @@ const SearchDear = () => {
         if (res.data.check === false) {
           alert(res.data.msg);
         } else {
-          //console.log(res.data);
+          console.log(res.data);
 
           let result = res.data.userInfo;
           setSearchResult(result);
