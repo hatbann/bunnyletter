@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 import axios from 'axios';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 import useDidMountEffect from '../components/useDidMountEffect';
 import moment from 'moment';
@@ -22,7 +23,7 @@ const ShareKakao = () => {
   //console.log(imgURL.blob);
   //const imgURL = window.URL.createObjectURL(bunnyCard)
 
-  console.log('imgUrl', imgURL);
+  //console.log('imgUrl', imgURL);
 
   useEffect(() => {
     console.log(imgId);
@@ -51,7 +52,6 @@ const ShareKakao = () => {
 
   const user = useSelector((state) => state.user.user.data);
   const receiver = location.state.receiver;
-  console.log(receiver);
   //카카오톡 공유하기
   const onClickShare = () => {
     /*
@@ -78,7 +78,7 @@ const ShareKakao = () => {
     const senderID = user.user_id;
     const letterContext = location.state.letterContext;
     let momentDate = moment().format('MMMM Do YYYY');
-    console.log(momentDate);
+    //console.log(momentDate);
 
     axios
       .post('http://27.96.130.247:4000/saveletter', {
@@ -103,6 +103,16 @@ const ShareKakao = () => {
       });
   };
 
+  const searchResult = receiver;
+
+  const onClickBack = () => {
+    navigate('/makeBunny', {
+      state: {
+        searchResult,
+      },
+    });
+  };
+
   return (
     <>
       <Nav />
@@ -113,6 +123,7 @@ const ShareKakao = () => {
             <button onClick={onClickShare} id="kakaotalk-sharing-btn">
               카카오톡 공유하기
             </button>
+            <button onClick={onClickBack}>편지 쓰기</button>
           </>
         ) : (
           <>

@@ -161,6 +161,7 @@ exports.postSaveLetter = async (req, res) => {
       sender_id: sender_id,
       receiver_id: receiver_id,
       letter_context: letter_context,
+      sender_visible: 1,
     },
   });
 
