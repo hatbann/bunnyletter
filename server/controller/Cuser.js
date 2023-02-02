@@ -217,7 +217,7 @@ exports.postGetSendLetters = async (req, res) => {
     },
   });
 
-  console.log(mylistLetter);
+  //console.log(mylistLetter);
   res.send(mylistLetter);
 };
 
@@ -229,7 +229,7 @@ exports.postGetReceivedLetters = async (req, res) => {
       receiver_nickname: req.body.receiver_nickname,
     },
   });
-  console.log(mylistLetter);
+  //console.log(mylistLetter);
   res.send(mylistLetter);
 };
 
