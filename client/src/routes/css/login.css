@@ -47,3 +47,41 @@
 .loginForm button img {
   width: 100px;
 }
+
+
+@media screen and (max-width: 700px){
+  .login.section h1 {
+    font-size: 50px;
+  }
+
+.loginForm {
+  width: 80vw;
+  flex-direction: column;
+}
+
+.loginForm form div{
+  display: flex;
+}
+
+.loginForm form div label{
+  margin-right: 10px;
+}
+
+.loginForm button {
+  margin-left: 0;
+  margin-top: 40px;
+}
+
+.loginForm button img{
+  width: 60px;
+}
+}
+
+@media screen and (max-width: 500px){
+
+
+  .loginForm form div input{
+    width: 250px;
+  }
+  
+  }

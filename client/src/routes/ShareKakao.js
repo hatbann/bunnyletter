@@ -105,8 +105,8 @@ const ShareKakao = () => {
 
   return (
     <>
+      <Nav />
       <div className="section share">
-        <Nav />
         <img src={imgURL} alt="" id="bunnyBlobImg" />
         {finishSend ? (
           <>
