@@ -122,14 +122,7 @@ const Mypage = () => {
             <section className="letters">
               <div className="letterDivs">
                 {letters.map((letter) => (
-                  <Letter
-                    key={letter.id}
-                    imgUrl={letter.img_url}
-                    letterContext={letter.letter_context}
-                    receiverNickname={letter.receiver_nickname}
-                    senderNickname={letter.sender_nickname}
-                    base64={letter.img_base64}
-                  />
+                  <Letter key={letter.id} data={letter} />
                 ))}
               </div>
             </section>

@@ -20,7 +20,7 @@
 }
 
 .letterDivs>div div{
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
 
@@ -42,6 +42,17 @@
 .letterDivs>div span:last-child{
   background-color:#44403F;
   color: white;
+}
+
+.letterDivs>div>p{
+  margin-bottom: 20px;
+  font-size: 13px;
+}
+
+.letterDivs button{
+  border: none;
+  background-color: transparent;
+  margin-top: 15px;
 }
 
 @media screen and (max-width:1200px) {
