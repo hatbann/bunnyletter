@@ -1,70 +1,43 @@
-# Getting Started with Create React App
+ ## 기획 의도
+    
+  2023 검은 토끼의 해, 계묘년을 맞아 주변 사람들에게 마음을 담은 편지를 전달할 수 있는 서비스
+    
+## 기술 명세 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- **회원가입 / 로그인**
+  - App.js에서 회원가입, 로그인을 통해 저장한 유저 세션값을 store user 정보에 저장하고, 로그인과 회원가입을 해야만 isLoggingIn 값을 true로 설정해서 리덕스로 user정보 관리
+  - axios를 이용한 아이디, 닉네임 중복 검사
+  - ID, 비밀번호 : 숫자+ 영문 6~20자리 정규식 사용
+  - 비밀번호 DB에 암호화하여 저장
+  - 비밀번호와 비밀번호 확인 입력값이 일치하는지 안하는지 메시지 알림
+  - 회원가입을 하면 store에 바로 로그인이 되도록 login 값을 true로 리덕스 정보 관리
+  
+- **로그아웃:** nav바에 로그아웃을 누르면 store에 login 값이 false가 되도록 리덕스 설정
 
-## Available Scripts
+- **닉네임 검색**
+    - axios를 통해 존재하지 않는 닉네임이라면 정보가 없다는 알림창
+    - 닉네임이 존재한다면  해당 유저에게 편지 쓰기 가능
+    
+- **편지 쓰기**
+    - 200자 제한 편지 쓰기 가능
+- 편지 전송 버튼 클릭시 ⇒ letter DB 저장 + 카카오톡 공유하기
+    - 쓴 편지를 html2canvas를 통해서 캡쳐하고,
+    - toDataURL 함수를 이용해 이미지를 문자열 형태로 변환. 그리고 이를 DB에 저장
+    
+- **마이페이지**
+    - 회원 수정 - 비밀번호만 수정 가능
+        - 새 비밀번호 6-20 자리의 영문 + 숫자 조합 정규식
+    - 탈퇴 가능
+    - 내가 보낸 편지 / 내가 받은 편지 보기
+        - 편지를 마이페이지에서 숨김 처리 가능
 
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## API
+    카카오톡 공유하기 API
+    - 카카오톡 공유하기를 통해 편지를 받았다는 메시지를 전달
+    - 템플릿을 이용해서 카카오톡에 보여질 이미지, 메시지, 주소를 설정하여 전달
+    
+## DB
+**MYSQL**
+  - user DB
+  - letter DB
+    
