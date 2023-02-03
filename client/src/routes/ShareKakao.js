@@ -22,13 +22,13 @@ const ShareKakao = () => {
   console.log(location.state.blob.slice(22));
   //const imgURL = window.URL.createObjectURL(bunnyCard)
 
-  let imgURLBlob = location.state.blob.slice(22);
-  //console.log('imgUrl', imgURL);
-  while (imgURLBlob.length % 4 > 0) {
-    imgURLBlob += '=';
-  }
+  // let imgURLBlob = location.state.blob.slice(22);
+  // //console.log('imgUrl', imgURL);
+  // while (imgURLBlob.length % 4 > 0) {
+  //   imgURLBlob += '=';
+  // }
 
-  console.log(imgURLBlob);
+  // console.log(imgURLBlob);
   useDidMountEffect(() => {
     if (window.Kakao) {
       console.log(finishSend);
