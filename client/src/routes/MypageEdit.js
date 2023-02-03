@@ -15,7 +15,7 @@ const MypageEdit = (e) => {
   const user = useSelector((state) => state.user.user.data);
   const isLoggingIn = useSelector((state) => state.user.user.isLoggingIn);
 
-  console.log(user);
+  //console.log(user);
 
   const pwRef = useRef();
   const checkPwRef = useRef();
@@ -56,7 +56,7 @@ const MypageEdit = (e) => {
           let result = res.data;
           alert(result);
           if (result) {
-            console.log(res.data);
+            //console.log(res.data);
             alert('비밀번호를 수정하였습니다.');
             window.location.href = '/';
           } else {

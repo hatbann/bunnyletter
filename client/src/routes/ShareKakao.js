@@ -19,7 +19,9 @@ const ShareKakao = () => {
   const [imgId, setImgId] = useState(0);
 
   const imgURL = location.state.blob;
+
   // console.log(location.state.blob.slice(22));
+
   //const imgURL = window.URL.createObjectURL(bunnyCard)
 
   // let imgURLBlob = location.state.blob.slice(22);
