@@ -37,16 +37,18 @@ const MakeBunny = () => {
         const card = bunnyCardRef.current;
         let scale = 2;
         window.scrollTo(0, 0);
-        html2canvas(card, { backgroundColor: null }).then((canvas) => {
-          console.log(canvas.toDataURL('image/png'));
-          navigate('/shareKakao', {
-            state: {
-              blob: canvas.toDataURL('image/png'),
-              receiver: receiver,
-              letterContext: textAreaRef.current.value,
-            },
-          });
-        });
+        html2canvas(card, { backgroundColor: null, width: 380 }).then(
+          (canvas) => {
+            //console.log(canvas.toDataURL('image/png'));
+            navigate('/shareKakao', {
+              state: {
+                blob: canvas.toDataURL('image/png'),
+                receiver: receiver,
+                letterContext: textAreaRef.current.value,
+              },
+            });
+          }
+        );
       }
     }
   };
