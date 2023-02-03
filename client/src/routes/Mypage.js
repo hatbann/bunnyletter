@@ -19,7 +19,7 @@ const Mypage = () => {
   const [listIdx, setListIdx] = useState('send');
   const [letters, setLetters] = useState([]);
 
-  console.log(user);
+  //console.log(user);
   //console.log(useSele ctor((state) => state.user));
 
   const sendBtnRef = useRef();
@@ -40,7 +40,7 @@ const Mypage = () => {
         sender_nickname: user.user_nickname,
       })
       .then((res) => {
-        console.log(res.data);
+        //console.log(res.data);
         let letterIdx = res.data;
         setLetters([]);
         letterIdx.map((letterIdx) => {
@@ -60,7 +60,7 @@ const Mypage = () => {
         receiver_nickname: user.user_nickname,
       })
       .then((res) => {
-        console.log(res.data);
+        //console.log(res.data);
         let letterIdx = res.data;
         setLetters([]);
         letterIdx.map((letterIdx) => {
@@ -74,7 +74,7 @@ const Mypage = () => {
   };
 
   const onClickBtn = (e) => {
-    console.log(sendBtnRef.current.value);
+    //console.log(sendBtnRef.current.value);
     if (e.target.value === 'send') {
       setListIdx('send');
       sendBtnRef.current.classList.add('active');
@@ -103,7 +103,7 @@ const Mypage = () => {
         });
     }
   };
-  console.log(letters);
+  //console.log(letters);
 
   //onClick - 정보 수정
   const onClickEdit = () => {

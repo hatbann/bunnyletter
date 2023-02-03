@@ -21,7 +21,7 @@ const Join = () => {
       return reg.test(str);
     };
 
-    console.log(idRef.current.value);
+    // console.log(idRef.current.value);
     if (idRef.current.value === '' || idRef.current.value === undefined) {
       alert('아이디를 입력하세요.');
       idRef.current.focus();

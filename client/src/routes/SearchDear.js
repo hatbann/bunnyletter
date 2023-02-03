@@ -23,7 +23,7 @@ const SearchDear = () => {
       return false;
     }
 
-    console.log(searchResult);
+    //console.log(searchResult);
 
     axios
       .post('http://27.96.130.247:4000/search', {

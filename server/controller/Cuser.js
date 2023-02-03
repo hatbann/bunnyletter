@@ -41,7 +41,7 @@ exports.postJoin = async (req, res) => {
 
       await User.create(data)
         .then((result) => {
-          console.log(result);
+          //console.log(result);
           res.send({
             check: true,
             msg: '회원가입에 성공했습니다!',
@@ -60,7 +60,7 @@ exports.postJoin = async (req, res) => {
 exports.postLogin = async (req, res) => {
   const enteredId = req.body.id;
   const enteredPassword = req.body.pw;
-  console.log('reqbody', req.body);
+  //console.log('reqbody', req.body);
   //const idsave = req.body.idsave;
 
   let result = await User.findOne({
@@ -69,7 +69,7 @@ exports.postLogin = async (req, res) => {
   });
 
   if (!result) {
-    console.log('!', result);
+    //console.log('!', result);
     res.send({
       check: false,
       msg: '아이디 또는 비밀번호를 잘못 입력했습니다.',
@@ -97,14 +97,14 @@ exports.postLogin = async (req, res) => {
 exports.postSearch = async (req, res) => {
   const searchNickName = req.body.searchNickName;
 
-  console.log(searchNickName);
+  //console.log(searchNickName);
   let result = await User.findOne({
     raw: true,
     where: { user_nickname: searchNickName },
   });
 
   if (!result) {
-    console.log('!', result);
+    //console.log('!', result);
     res.send({
       check: false,
       msg: '찾는 정보가 없습니다.',
@@ -118,12 +118,12 @@ exports.postSearch = async (req, res) => {
 
 // 마이페이지 회원 탈퇴 DELETE
 exports.deleteAccount = async (req, res) => {
-  console.log(req.body);
+  //console.log(req.body);
 
   let result = await User.destroy({
     where: { user_id: req.body.user_id },
   });
-  console.log(result);
+  //console.log(result);
 
   let receiverID = await Letter.destroy({
     where: { receiver_id: req.body.user_id },
@@ -259,7 +259,7 @@ exports.fetchProfile = async (req, res) => {
   // });
 
   if (updateResult) {
-    console.log('*******************', updateResult);
+    //console.log('*******************', updateResult);
     res.send(true);
   } else res.send(false);
 };
@@ -282,9 +282,9 @@ exports.hideSentLetter = async (req, res) => {
     },
   });
 
-  console.log(updateVisibleResult);
+  //console.log(updateVisibleResult);
   if (updateVisibleResult) {
-    console.log(updateVisibleResult);
+    //console.log(updateVisibleResult);
     res.send(true);
   } else res.send(false);
 };
@@ -307,7 +307,7 @@ exports.hideReceivedLetter = async (req, res) => {
   });
 
   if (('*******************', updateVisibleResult)) {
-    console.log(updateVisibleResult);
+    //console.log(updateVisibleResult);
     res.send(true);
   } else res.send(false);
 };
