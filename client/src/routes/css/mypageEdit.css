@@ -112,7 +112,20 @@
 }
 
 @media screen and (max-width: 500px) {
+
+  .edit.section {
+    height: 100vh;
+  }
   .editForm form div input {
     width: 250px;
   }
+
+  .edit.section h1 {
+    margin-bottom: 40px;
+    margin-top: 65px;
+    font-weight: 600;
+    font-size: 40px;
 }
+}
+
+

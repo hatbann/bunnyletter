@@ -173,7 +173,7 @@
 
 #bunnyBlobImg {
   width: 350px;
-  margin-top: 250px;
+  margin-top: 180px;
   margin-bottom: 30px;
 }
 
@@ -195,6 +195,10 @@
 }
 
 @media screen and (max-width: 500px) {
+  .search.section {
+    margin-top: 40px;
+  }
+
   .search.section h1 {
     font-size: 50px;
     margin-bottom: 50px;
@@ -259,4 +263,27 @@
     background-color: rgb(32, 32, 32);
     color: #f8c3cc;
   }
+
+  .write.section {
+    padding-top: 100px;
+}
+
+.sendBtn{
+  width: 112px;
+    height: 32px;
+    margin-top: 16px;
+}
+
+#bunnyBlobImg{
+  margin-top: 145px;
+}
+
+.section.share{
+  height: 100%;
+  margin-bottom: 20px;
+}
+
+.section.share > button{
+  margin-bottom: 0;
+}
 }

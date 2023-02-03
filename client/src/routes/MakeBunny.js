@@ -11,7 +11,7 @@ import user from '../store/module/user';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import html2canvas from 'html2canvas';
+import html2canvas from '@nidi/html2canvas';
 
 const MakeBunny = () => {
   const navigate = useNavigate();
@@ -36,6 +36,7 @@ const MakeBunny = () => {
 
         const card = bunnyCardRef.current;
         let scale = 2;
+        window.scrollTo(0, 0);
         html2canvas(card, { backgroundColor: null }).then((canvas) => {
           console.log(canvas.toDataURL('image/png'));
           navigate('/shareKakao', {
@@ -46,30 +47,6 @@ const MakeBunny = () => {
             },
           });
         });
-
-        /*
-        domtoimage
-          .toPng(card, {
-            width: card.clientWidth * scale,
-            height: card.clientHeight * scale,
-            style: {
-              transform: 'scale(' + scale + ')',
-              transformOrigin: 'top left',
-            },
-          })
-          .then((dataUrl) => {
-            var img = new Image();
-            img.src = dataUrl;
-            //console.log(img);
-            navigate('/shareKakao', {
-              state: {
-                blob: img.src,
-                receiver: receiver,
-                letterContext: textAreaRef.current.value,
-              },
-            });
-          });
-          */
       }
     }
   };
