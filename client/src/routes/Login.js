@@ -27,7 +27,7 @@ const Login = () => {
     }
 
     axios
-      .post('http://27.96.130.247:4000/login', {
+      .post('http://49.50.173.65:4000/login', {
         id: idRef.current.value,
         pw: pwRef.current.value,
       })
